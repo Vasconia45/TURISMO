@@ -1,0 +1,80 @@
+/* custom scrollbar */
+html::-webkit-scrollbar {
+  width: 10px;
+}
+
+html::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px grey;
+}
+
+html::-webkit-scrollbar-thumb {
+  background-color: transparent;
+}
+
+html::-webkit-scrollbar-thumb:hover {
+  background: rgba(2,41,71,255);
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+}
+
+header{
+  height: 100vh;
+}
+
+.contenedor1 {
+  width: 100%;
+  height: 100vh;
+  background-image: url("../img/viejo-muro-piedra-sobre-oceano-isla.jpg");
+  background-position: center;
+  background-size: cover;
+  transition: 4s;
+  position: absolute;
+}
+
+.contenedor1:hover {
+  transform: scale(1.1);
+  transition: 3s;
+}
+
+.contenedor2 {
+  width: 100%;
+  position: absolute;
+  display: flex;
+  justify-content: center;
+}
+
+.img-logo {
+  width: 25px;
+}
+
+nav {
+  justify-content: space-between;
+  align-items: center;
+  text-transform: uppercase;
+  width: 70%;
+  height: 5vh;
+  transition: 0s;
+  position: fixed;
+  z-index: 9999;
+  transition: 0.3s ease-in-out;
+}
+nav a {
+  text-decoration: none;
+  padding-right: 15px;
+  color: beige;
+}
+nav a:hover {
+  color: orange;
+}
+
+#section1 {
+  height: 200vh;
+}
+
+#section2 {
+  height: 60vh;
+}/*# sourceMappingURL=main.css.map */

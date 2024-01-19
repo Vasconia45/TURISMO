@@ -1,0 +1,38 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+#ciudad {
+  height: 80vh;
+  background: rgb(2, 0, 36);
+  background: linear-gradient(90deg, rgb(2, 0, 36) 0%, rgb(9, 83, 121) 0%, rgb(7, 105, 144) 0%, rgb(0, 212, 255) 0%, rgb(0, 212, 255) 0%, rgb(9, 83, 121) 34%, rgb(4, 44, 126) 81%, rgb(7, 105, 144) 100%, rgb(44, 55, 102) 100%);
+}
+#ciudad .ciudades {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr;
+  -moz-column-gap: 2vh;
+       column-gap: 2vh;
+}
+#ciudad .ciudades div {
+  width: 65vh;
+  height: 50vh;
+  margin-left: 0.7vh;
+  margin-top: 15vh;
+}
+#ciudad .ciudades #bilbao {
+  background: url(../img/bilbao.jpg);
+  background-size: cover;
+  background-position: center;
+}
+#ciudad .ciudades #donostia {
+  background: url(../img/donostia.jpg);
+  background-size: cover;
+  background-position: center;
+}
+#ciudad .ciudades #vitoria {
+  background: url(../img/vitoria.jpg);
+  background-size: cover;
+  background-position: center;
+}/*# sourceMappingURL=ciudad.css.map */

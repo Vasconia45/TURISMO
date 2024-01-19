@@ -1,0 +1,75 @@
+@charset "UTF-8";
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+.btn-social {
+  width: 4.5vh;
+  border-radius: 50%;
+  font-family: "Roboto", sans-serif;
+  font-weight: bold;
+  background-color: black;
+  color: beige;
+  padding: 1vh;
+  text-align: center;
+  text-decoration: none;
+  text-transform: uppercase;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  transition-property: box-shadow, transform;
+}
+
+.btn-social:hover,
+.btn-social:focus,
+.btn-social:active {
+  transform: scale(1.1);
+}
+
+#contact {
+  background-image: url("../img/carles-rabada-cJ2GcTsU2dg-unsplash.jpg");
+  background-position: center;
+  background-size: cover;
+  padding: 3vh;
+}
+#contact form {
+  padding: 2vh;
+}
+#contact form div {
+  padding: 1vh;
+}
+#contact form input {
+  height: 6vh;
+}
+#contact form textarea {
+  height: 22vh;
+  padding: 2vh;
+}
+#contact form button {
+  font-family: "Roboto", sans-serif;
+  font-weight: bold;
+  background-color: black;
+  padding: 1vh;
+  text-align: center;
+  text-decoration: none;
+  text-transform: uppercase;
+  color: beige;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  transition-property: box-shadow, transform;
+}
+#contact form button:hover,
+#contact form button:focus,
+#contact form button:active {
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+  transform: scale(1.1);
+}
+
+footer a {
+  color: black;
+}
+footer .row div:nth-child(2) {
+  display: flex;
+  justify-content: center;
+}/*# sourceMappingURL=footer.css.map */
