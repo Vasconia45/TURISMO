@@ -1,19 +1,27 @@
 package com.example.Proyecto;
 
-import java.time.LocalDateTime;
+import java.time.Year;
 
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.support.ReloadableResourceBundleMessageSource;
-import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 
+import com.example.Proyecto.DTO.CiudadDTO;
+import com.example.Proyecto.DTO.EstablecimientoDTO;
+import com.example.Proyecto.DTO.PintxoDTO;
 import com.example.Proyecto.DTO.UserDTO;
+import com.example.Proyecto.Model.Ciudad;
 import com.example.Proyecto.Model.Direccion;
+import com.example.Proyecto.Model.Establecimiento;
+import com.example.Proyecto.Model.EstablecimientoPintxo;
+import com.example.Proyecto.Model.Pintxo;
 import com.example.Proyecto.Model.Rol;
 import com.example.Proyecto.Model.User;
+import com.example.Proyecto.Repository.EstablecimientoPintxoRepository;
+import com.example.Proyecto.Service.CiudadService;
+import com.example.Proyecto.Service.EstablecimientoService;
+import com.example.Proyecto.Service.PintxoService;
 import com.example.Proyecto.Service.RoleService;
 import com.example.Proyecto.Service.UserService;
 
@@ -36,7 +44,7 @@ public class Proyecto1Application {
     }*/
 	
 	@Bean
-	public ApplicationRunner configure(RoleService roleservice, UserService userservice) {
+	public ApplicationRunner configure(RoleService roleservice, UserService userservice, CiudadService ciudadservice, EstablecimientoPintxoRepository estPinrepository, EstablecimientoService estservice, PintxoService pintxoservice) {
 		return env -> {
 
 			// Relacion entre User, Rol, Direccion
@@ -54,7 +62,32 @@ public class Proyecto1Application {
 			*/
 			
 			// Relacion entre Ciudad, Establecimiento, Direccion
+			/*Direccion d1 = new Direccion("Plaza Guipuzcoa", 20005, "16");
+
+			Ciudad ciudad1 = new Ciudad(1l, "Donostia", "Guipuzcoa", "Esto es Donosti");
+			Ciudad ciudad2 = new Ciudad(2l, "Bilbao", "Bizkaia", "Esto es Bilbao");
+			Ciudad ciudad3 = new Ciudad(3l, "Vitoria", "Araba", "Esto es Vitoria");
+			EstablecimientoDTO est1 = new EstablecimientoDTO(22l, "Bideluze", "6522145", Year.now(), d1, ciudad1);
 			
+			ciudadservice.save(ciudad1);
+			ciudadservice.save(ciudad2);
+			ciudadservice.save(ciudad3);
+			estservice.save(est1, ciudad1.getId());*/
+			
+			
+			//Relacion Many to Many
+			Direccion d1 = new Direccion("Plaza Guipuzcoa", 20005, "16");
+			Ciudad ciudad2 = new Ciudad(2l, "Bilbao", "Bizkaia", "Esto es Bilbao");
+			Pintxo pintxo1 = new Pintxo("Pintxo gilda", "scmsdcsd", "extra1");
+			Establecimiento est1 = new Establecimiento("Quijote", "233242", Year.now(), d1 ,ciudad2);
+			ciudadservice.save(ciudad2);
+			pintxoservice.save(pintxo1);
+			estservice.save(est1);
+			
+			EstablecimientoPintxo establecimientoPintxo1 = new EstablecimientoPintxo(3.0, pintxo1, est1);
+			
+			
+			estPinrepository.save(establecimientoPintxo1);
 		};
 	}
 

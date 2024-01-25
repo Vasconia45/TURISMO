@@ -20,8 +20,6 @@ public class Ciudad {
 	
 	private String provincia;
 	
-	private String población;
-	
 	private String descripcion;
 
 	@OneToMany(mappedBy = "ciudad", cascade = CascadeType.ALL)
@@ -30,15 +28,24 @@ public class Ciudad {
 	public Ciudad() {
 		super();
 	}
+	
+	public Ciudad(Long id, String nombre, String provincia, String descripcion) {
+		super();
+		this.id = id;
+		this.nombre = nombre;
+		this.provincia = provincia;
+		this.descripcion = descripcion;
+	}
 
-	public Ciudad(String nombre, String provincia, String población, String descripcion,
-			List<Establecimiento> establecimientos) {
+	public Ciudad(String nombre, String provincia, String descripcion) {
 		super();
 		this.nombre = nombre;
 		this.provincia = provincia;
-		this.población = población;
 		this.descripcion = descripcion;
-		this.establecimientos = establecimientos;
+	}
+	
+	public void addEst(Establecimiento est) {
+		this.establecimientos.add(est);
 	}
 
 	public Long getId() {
@@ -63,14 +70,6 @@ public class Ciudad {
 
 	public void setProvincia(String provincia) {
 		this.provincia = provincia;
-	}
-
-	public String getPoblación() {
-		return población;
-	}
-
-	public void setPoblación(String población) {
-		this.población = población;
 	}
 
 	public String getDescripcion() {

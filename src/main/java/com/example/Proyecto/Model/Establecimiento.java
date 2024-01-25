@@ -1,6 +1,8 @@
 package com.example.Proyecto.Model;
 
 import java.time.Year;
+import java.util.HashSet;
+import java.util.Set;
 
 import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
@@ -8,7 +10,10 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 
 @Entity(name="establecimientos")
 public class Establecimiento {
@@ -29,6 +34,9 @@ public class Establecimiento {
 	@ManyToOne()
 	@JoinColumn(name="id_ciudad")
 	private Ciudad ciudad;
+	
+	@OneToMany(mappedBy = "establecimiento")	
+	private Set<EstablecimientoPintxo> establecimientosPintxos = new HashSet<>();
 
 	public Establecimiento() {
 		super();
@@ -42,7 +50,7 @@ public class Establecimiento {
 		this.direccion = direccion;
 		this.ciudad = ciudad;
 	}
-
+	
 	public Long getId() {
 		return id;
 	}

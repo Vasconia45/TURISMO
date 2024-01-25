@@ -1,12 +1,9 @@
 package com.example.Proyecto.Service;
 
-import java.util.Optional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.Proyecto.DTO.UserDTO;
-import com.example.Proyecto.Model.Direccion;
 import com.example.Proyecto.Model.Rol;
 import com.example.Proyecto.Model.User;
 import com.example.Proyecto.Repository.RoleRepository;
