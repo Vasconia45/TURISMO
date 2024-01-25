@@ -4,6 +4,8 @@ import java.time.Year;
 import java.util.HashSet;
 import java.util.Set;
 
+import org.hibernate.validator.constraints.UniqueElements;
+
 import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -21,7 +23,7 @@ public class Establecimiento {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
+
 	private String nombre;
 	
 	private String telefono;
@@ -37,6 +39,9 @@ public class Establecimiento {
 	
 	@OneToMany(mappedBy = "establecimiento")	
 	private Set<EstablecimientoPintxo> establecimientosPintxos = new HashSet<>();
+	
+	@OneToMany(mappedBy = "establecimiento")	
+	private Set<EstablecimientoBebida> establecimientosBebidas = new HashSet<>();
 
 	public Establecimiento() {
 		super();
@@ -97,6 +102,14 @@ public class Establecimiento {
 
 	public void setCiudad(Ciudad ciudad) {
 		this.ciudad = ciudad;
+	}
+
+	public Set<EstablecimientoPintxo> getEstablecimientosPintxos() {
+		return establecimientosPintxos;
+	}
+
+	public void setEstablecimientosPintxos(Set<EstablecimientoPintxo> establecimientosPintxos) {
+		this.establecimientosPintxos = establecimientosPintxos;
 	}
 	
 }

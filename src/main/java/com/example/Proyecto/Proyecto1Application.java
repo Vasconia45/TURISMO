@@ -11,14 +11,19 @@ import com.example.Proyecto.DTO.CiudadDTO;
 import com.example.Proyecto.DTO.EstablecimientoDTO;
 import com.example.Proyecto.DTO.PintxoDTO;
 import com.example.Proyecto.DTO.UserDTO;
+import com.example.Proyecto.Model.Bebida;
+import com.example.Proyecto.Model.Bebidas_alc;
 import com.example.Proyecto.Model.Ciudad;
 import com.example.Proyecto.Model.Direccion;
 import com.example.Proyecto.Model.Establecimiento;
+import com.example.Proyecto.Model.EstablecimientoBebida;
 import com.example.Proyecto.Model.EstablecimientoPintxo;
 import com.example.Proyecto.Model.Pintxo;
 import com.example.Proyecto.Model.Rol;
 import com.example.Proyecto.Model.User;
+import com.example.Proyecto.Repository.EstablecimientoBebidaRepository;
 import com.example.Proyecto.Repository.EstablecimientoPintxoRepository;
+import com.example.Proyecto.Service.BebidaService;
 import com.example.Proyecto.Service.CiudadService;
 import com.example.Proyecto.Service.EstablecimientoService;
 import com.example.Proyecto.Service.PintxoService;
@@ -44,7 +49,9 @@ public class Proyecto1Application {
     }*/
 	
 	@Bean
-	public ApplicationRunner configure(RoleService roleservice, UserService userservice, CiudadService ciudadservice, EstablecimientoPintxoRepository estPinrepository, EstablecimientoService estservice, PintxoService pintxoservice) {
+	public ApplicationRunner configure(RoleService roleservice, UserService userservice, CiudadService ciudadservice, 
+			EstablecimientoPintxoRepository estPinrepository, EstablecimientoService estservice, PintxoService pintxoservice,
+			BebidaService bebidaservice, EstablecimientoBebidaRepository estBebrepository) {
 		return env -> {
 
 			// Relacion entre User, Rol, Direccion
@@ -88,6 +95,18 @@ public class Proyecto1Application {
 			
 			
 			estPinrepository.save(establecimientoPintxo1);
+			
+			// Relacion Many to Many Bebidas
+			Bebida bebida1 = new Bebida("Coca-Cola", 30, "Coca-Cola", "Bebida energetica", "España");
+			bebidaservice.save(bebida1);
+			ciudadservice.save(ciudad2);
+			estservice.save(est1);
+			Bebidas_alc bebAlc = new Bebidas_alc(1l, null, 0, null, null, null, 0, null, null);
+			bebidaservice.save(bebAlc);
+			
+			EstablecimientoBebida establecimientoBebida1 = new EstablecimientoBebida(2.5, bebAlc, est1);
+			
+			estBebrepository.save(establecimientoBebida1);
 		};
 	}
 

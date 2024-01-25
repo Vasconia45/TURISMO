@@ -15,9 +15,6 @@ public class EstablecimientoServiceImp implements EstablecimientoService{
 	@Autowired
 	private EstablecimientoRepository estrepository;
 	
-	@Autowired
-	private CiudadRepository ciudadrepository;
-	
 	@Override
 	public void save(Establecimiento establecimiento) {
 		estrepository.save(establecimiento);	
