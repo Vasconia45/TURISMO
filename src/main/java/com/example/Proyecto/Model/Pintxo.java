@@ -3,11 +3,11 @@ package com.example.Proyecto.Model;
 import java.util.HashSet;
 import java.util.Set;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToMany;
 
 @Entity(name="pintxos")
@@ -23,8 +23,14 @@ public class Pintxo {
 	
 	private String extra;
 	
-	@OneToMany(mappedBy = "pintxo")	
+	@OneToMany(mappedBy = "pintxo", cascade = CascadeType.REMOVE)
 	private Set<EstablecimientoPintxo> establecimientosPintxos = new HashSet<>();
+	
+	@OneToMany(mappedBy = "pintxo", cascade =  CascadeType.REMOVE)
+	private Set<Favorito> favoritos = new HashSet<>();
+	
+	@OneToMany(mappedBy = "pintxoOp", cascade =  CascadeType.REMOVE)
+	private Set<Opinion> opiniones = new HashSet<>();
 
 	public Pintxo() {
 		super();
@@ -67,6 +73,30 @@ public class Pintxo {
 
 	public void setExtra(String extra) {
 		this.extra = extra;
+	}
+	
+	public Set<EstablecimientoPintxo> getEstablecimientosPintxos() {
+		return establecimientosPintxos;
+	}
+
+	public void setEstablecimientosPintxos(Set<EstablecimientoPintxo> establecimientosPintxos) {
+		this.establecimientosPintxos = establecimientosPintxos;
+	}
+
+	public Set<Favorito> getFavoritos() {
+		return favoritos;
+	}
+
+	public void setFavoritos(Set<Favorito> favoritos) {
+		this.favoritos = favoritos;
+	}
+
+	public Set<Opinion> getOpiniones() {
+		return opiniones;
+	}
+
+	public void setOpiniones(Set<Opinion> opiniones) {
+		this.opiniones = opiniones;
 	}
 	
 	

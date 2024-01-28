@@ -17,4 +17,13 @@ public class RoleServiceImp implements RoleService{
 		repository.save(rol);
 	}
 
+	@Override
+	public void deleteAll() {
+		repository.deleteAll();
+	}
+
+	@Override
+	public Rol getRol() {
+		return  repository.getReferenceById(2l);
+	}
 }

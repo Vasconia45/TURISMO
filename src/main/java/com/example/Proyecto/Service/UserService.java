@@ -6,4 +6,6 @@ import com.example.Proyecto.Model.User;
 public interface UserService {
 
 	public User save(UserDTO us);
+	
+	public void deleteAll();
 }

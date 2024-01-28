@@ -1,16 +1,9 @@
 package com.example.Proyecto.Model;
 
-import java.util.HashSet;
-import java.util.Set;
-
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
 
 @Entity(name="bebidas")
 public class Bebida {
@@ -28,9 +21,6 @@ public class Bebida {
 	protected String descricpion;
 	
 	protected String origen;
-	
-	@OneToMany(mappedBy = "bebida")	
-	protected Set<EstablecimientoBebida> establecimientosBebidas = new HashSet<>();
 
 	public Bebida() {
 		super();
@@ -101,14 +91,6 @@ public class Bebida {
 
 	public void setOrigen(String origen) {
 		this.origen = origen;
-	}
-
-	public Set<EstablecimientoBebida> getEstablecimientosBebidas() {
-		return establecimientosBebidas;
-	}
-
-	public void setEstablecimientosBebidas(Set<EstablecimientoBebida> establecimientosBebidas) {
-		this.establecimientosBebidas = establecimientosBebidas;
 	}
 	
 	

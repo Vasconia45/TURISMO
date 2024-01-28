@@ -4,16 +4,13 @@ import java.time.Year;
 import java.util.HashSet;
 import java.util.Set;
 
-import org.hibernate.validator.constraints.UniqueElements;
-
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.JoinTable;
-import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 
@@ -37,23 +34,18 @@ public class Establecimiento {
 	@JoinColumn(name="id_ciudad")
 	private Ciudad ciudad;
 	
-	@OneToMany(mappedBy = "establecimiento")	
+	@OneToMany(mappedBy = "establecimiento", cascade = CascadeType.REMOVE)	
 	private Set<EstablecimientoPintxo> establecimientosPintxos = new HashSet<>();
-	
-	@OneToMany(mappedBy = "establecimiento")	
-	private Set<EstablecimientoBebida> establecimientosBebidas = new HashSet<>();
 
 	public Establecimiento() {
 		super();
 	}
 
-	public Establecimiento(String nombre, String telefono, Year año_fundacion, Direccion direccion, Ciudad ciudad) {
+	public Establecimiento(String nombre, String telefono, Year año_fundacion) {
 		super();
 		this.nombre = nombre;
 		this.telefono = telefono;
 		this.año_fundacion = año_fundacion;
-		this.direccion = direccion;
-		this.ciudad = ciudad;
 	}
 	
 	public Long getId() {

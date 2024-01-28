@@ -21,21 +21,9 @@ public class Rol {
 	@OneToMany(mappedBy = "role", cascade = CascadeType.ALL)
 	private List<User> usuarios;
 
-	public Rol(Long id, String tipo, List<User> usuarios) {
-		super();
-		this.id = id;
-		this.tipo = tipo;
-		this.usuarios = usuarios;
-	}
-
 	public Rol(Long id, String tipo) {
 		super();
 		this.id = id;
-		this.tipo = tipo;
-	}
-	
-	public Rol(String tipo) {
-		super();
 		this.tipo = tipo;
 	}
 	

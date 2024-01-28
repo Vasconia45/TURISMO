@@ -1,9 +1,6 @@
 package com.example.Proyecto.Model;
 
 import java.io.Serializable;
-
-import com.example.Proyecto.Model.EstablecimientoPintxo.Id;
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;
 import jakarta.persistence.EmbeddedId;
@@ -16,6 +13,8 @@ public class EstablecimientoBebida {
 
 	@Embeddable
 	public static class Id implements Serializable{
+		private static final long serialVersionUID = 1L;
+
 		@Column(name="bebida_id")
 		private Long bebida_id;
 		

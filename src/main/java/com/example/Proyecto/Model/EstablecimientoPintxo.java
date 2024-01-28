@@ -1,17 +1,11 @@
 package com.example.Proyecto.Model;
 
 import java.io.Serializable;
-import java.time.LocalDateTime;
-
-import org.hibernate.annotations.CreationTimestamp;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;
 import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 
@@ -20,6 +14,8 @@ public class EstablecimientoPintxo {
 	
 	@Embeddable
 	public static class Id implements Serializable{
+		private static final long serialVersionUID = 1L;
+
 		@Column(name="pintxo_id")
 		private Long pintxo_id;
 		
@@ -42,9 +38,6 @@ public class EstablecimientoPintxo {
     private Id id = new Id();
 
     private Double precioEnEstablecimiento;
-    
-    /*@CreationTimestamp
-    private LocalDateTime createdOn;*/
 
 	@ManyToOne
 	@JoinColumn(

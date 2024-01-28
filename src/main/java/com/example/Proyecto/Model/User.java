@@ -1,7 +1,10 @@
 package com.example.Proyecto.Model;
 
 import java.time.LocalDateTime;
+import java.util.HashSet;
+import java.util.Set;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -9,6 +12,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 
 @Entity(name = "users")
 public class User {
@@ -36,8 +40,23 @@ public class User {
 	@JoinColumn(name="role_id")
 	private Rol role;
 	
+	@OneToMany(mappedBy = "user", cascade =  CascadeType.REMOVE)
+	private Set<Favorito> favoritos = new HashSet<>();
+	
+	@OneToMany(mappedBy = "userOp", cascade =  CascadeType.REMOVE)
+	private Set<Opinion> opiniones = new HashSet<>();
+	
 	public User() {
 		
+	}
+
+	public User(String nombre, String nombre_usuario, int phone, String email, String password) {
+		super();
+		this.nombre = nombre;
+		this.nombre_usuario = nombre_usuario;
+		this.phone = phone;
+		this.email = email;
+		this.password = password;
 	}
 
 	public User(String nombre, String nombre_usuario, int phone, String email, String password, LocalDateTime createdOn,
@@ -123,5 +142,21 @@ public class User {
 
 	public void setRole(Rol role) {
 		this.role = role;
+	}
+
+	public Set<Favorito> getFavoritos() {
+		return favoritos;
+	}
+
+	public void setFavoritos(Set<Favorito> favoritos) {
+		this.favoritos = favoritos;
+	}
+
+	public Set<Opinion> getOpiniones() {
+		return opiniones;
+	}
+
+	public void setOpiniones(Set<Opinion> opiniones) {
+		this.opiniones = opiniones;
 	}
 }

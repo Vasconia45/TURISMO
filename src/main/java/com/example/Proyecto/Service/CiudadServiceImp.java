@@ -3,7 +3,6 @@ package com.example.Proyecto.Service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.example.Proyecto.DTO.CiudadDTO;
 import com.example.Proyecto.Model.Ciudad;
 import com.example.Proyecto.Repository.CiudadRepository;
 
@@ -16,6 +15,11 @@ public class CiudadServiceImp implements CiudadService{
 	@Override
 	public void save(Ciudad ciudad) {
 		repository.save(ciudad);
+	}
+
+	@Override
+	public void deleteAll() {
+		repository.deleteAll();
 		
 	}
 

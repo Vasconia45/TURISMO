@@ -12,9 +12,9 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 
-@Entity(name="opiniones")
-public class Opinion {
-
+@Entity(name="favoritos")
+public class Favorito {
+	
 	@Embeddable
 	public static class Id implements Serializable{
 		private static final long serialVersionUID = 1L;
@@ -44,33 +44,27 @@ public class Opinion {
 	@JoinColumn(
 	name="pintxo_id",
 	insertable = false, updatable = false)
-	private Pintxo pintxoOp;
+	private Pintxo pintxo;
     
 	@ManyToOne
 	@JoinColumn(
 	name="user_id",
 	insertable = false, updatable = false)
-	private User userOp;
+	private User user;
 	
 	@CreationTimestamp
     private LocalDateTime createdOn;
-	
-	private String comentario;
-	
-	private int valoracion;
 
-	public Opinion(Pintxo pintxo, User user, String comentario, int valoracion) {
+	public Favorito(Pintxo pintxo, User user) {
 		super();
-		this.pintxoOp = pintxo;
-		this.userOp = user;
+		this.pintxo = pintxo;
+		this.user = user;
 		this.createdOn = LocalDateTime.now();
-		this.comentario = comentario;
-		this.valoracion = valoracion;
 		this.id.pintxo_id = pintxo.getId();
 		this.id.user_id = user.getId();
 	}
 
-	public Opinion() {
+	public Favorito() {
 		super();
 	}
 
@@ -80,21 +74,5 @@ public class Opinion {
 
 	public void setCreatedOn(LocalDateTime createdOn) {
 		this.createdOn = createdOn;
-	}
-
-	public String getComentario() {
-		return comentario;
-	}
-
-	public void setComentario(String comentario) {
-		this.comentario = comentario;
-	}
-
-	public int getValoracion() {
-		return valoracion;
-	}
-
-	public void setValoracion(int valoracion) {
-		this.valoracion = valoracion;
 	}
 }

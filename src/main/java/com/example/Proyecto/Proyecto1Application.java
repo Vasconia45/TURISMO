@@ -1,5 +1,6 @@
 package com.example.Proyecto;
 
+import java.time.LocalDateTime;
 import java.time.Year;
 
 import org.springframework.boot.ApplicationRunner;
@@ -7,25 +8,22 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
-import com.example.Proyecto.DTO.CiudadDTO;
-import com.example.Proyecto.DTO.EstablecimientoDTO;
-import com.example.Proyecto.DTO.PintxoDTO;
-import com.example.Proyecto.DTO.UserDTO;
-import com.example.Proyecto.Model.Bebida;
-import com.example.Proyecto.Model.Bebidas_alc;
 import com.example.Proyecto.Model.Ciudad;
 import com.example.Proyecto.Model.Direccion;
 import com.example.Proyecto.Model.Establecimiento;
-import com.example.Proyecto.Model.EstablecimientoBebida;
 import com.example.Proyecto.Model.EstablecimientoPintxo;
+import com.example.Proyecto.Model.Favorito;
+import com.example.Proyecto.Model.Opinion;
 import com.example.Proyecto.Model.Pintxo;
 import com.example.Proyecto.Model.Rol;
 import com.example.Proyecto.Model.User;
 import com.example.Proyecto.Repository.EstablecimientoBebidaRepository;
-import com.example.Proyecto.Repository.EstablecimientoPintxoRepository;
 import com.example.Proyecto.Service.BebidaService;
 import com.example.Proyecto.Service.CiudadService;
+import com.example.Proyecto.Service.EstablecimientoPintxoService;
 import com.example.Proyecto.Service.EstablecimientoService;
+import com.example.Proyecto.Service.FavoritoService;
+import com.example.Proyecto.Service.OpinionService;
 import com.example.Proyecto.Service.PintxoService;
 import com.example.Proyecto.Service.RoleService;
 import com.example.Proyecto.Service.UserService;
@@ -50,63 +48,72 @@ public class Proyecto1Application {
 	
 	@Bean
 	public ApplicationRunner configure(RoleService roleservice, UserService userservice, CiudadService ciudadservice, 
-			EstablecimientoPintxoRepository estPinrepository, EstablecimientoService estservice, PintxoService pintxoservice,
-			BebidaService bebidaservice, EstablecimientoBebidaRepository estBebrepository) {
+			EstablecimientoPintxoService estPinservice, EstablecimientoService estservice, PintxoService pintxoservice,
+			BebidaService bebidaservice, EstablecimientoBebidaRepository estBebrepository, FavoritoService favoritoservice,
+			OpinionService opinionservice) {
 		return env -> {
-
-			// Relacion entre User, Rol, Direccion
-			/*Rol rol1 = new Rol(1l, "ADMIN");
+			Rol rol1 = new Rol(1l, "ADMIN");
 			Rol rol2 = new Rol(2l, "USER");
-			UserDTO pablo = new UserDTO("Pablo", "ablo_44", 6598256, "pil.donosti@gmail.com", "sadas", LocalDateTime.now(), "Borroto 34", 20009, "3B", rol1);
-			UserDTO pepe = new UserDTO("Pepe", "PEPE_56", 6598256, "pil.donosti@gmail.com", "sadas", LocalDateTime.now(), "Pascual 31 2D", 10014, "3B", rol2);
-			UserDTO pruebaNull = new UserDTO("Prueba", null, 0, "pil.donosti@gmail.com", "sadas", null,null, 0, null, rol2);
 			
 			roleservice.save(rol1);
 			roleservice.save(rol2);
-			userservice.save(pablo);
-			userservice.save(pepe);
-			userservice.save(pruebaNull);
-			*/
+			/*favoritoservice.deleteAll();
+			opinionservice.deleteAll();
+			userservice.deleteAll();
+			ciudadservice.deleteAll();
+			estPinservice.deleteAll();
+			estservice.deleteAll();
+			pintxoservice.deleteAll();
 			
-			// Relacion entre Ciudad, Establecimiento, Direccion
-			/*Direccion d1 = new Direccion("Plaza Guipuzcoa", 20005, "16");
+			
+			//Relacion Usuario-Opinion
+			
+			User user1 = new User("Pablo", "Pablo_45", 6058998, "Donostiii", "Donostiii");
+			user1.setCreatedOn(LocalDateTime.now());
+			user1.setDireccion(new Direccion("Borroto 35", 20009, "3B"));
+			Rol rol1 = new Rol(1l, "ADMIN");
+			Rol rol2 = new Rol(2l, "USER");
+			user1.setRole(rol1);
+			
+			Ciudad donostia = new Ciudad("Donostia", "Guipuzcoa", 150000, "Tiene X habitantes");
+			Ciudad vitoria = new Ciudad("Vitoria", "Alava", 80000, "Tiene X");
+			Ciudad bilbao = new Ciudad("Bilbao", "Bizkaia", 200000, "Tiene Y");
 
-			Ciudad ciudad1 = new Ciudad(1l, "Donostia", "Guipuzcoa", "Esto es Donosti");
-			Ciudad ciudad2 = new Ciudad(2l, "Bilbao", "Bizkaia", "Esto es Bilbao");
-			Ciudad ciudad3 = new Ciudad(3l, "Vitoria", "Araba", "Esto es Vitoria");
-			EstablecimientoDTO est1 = new EstablecimientoDTO(22l, "Bideluze", "6522145", Year.now(), d1, ciudad1);
+			ciudadservice.save(bilbao);
+			ciudadservice.save(donostia);
+			ciudadservice.save(vitoria);
 			
-			ciudadservice.save(ciudad1);
-			ciudadservice.save(ciudad2);
-			ciudadservice.save(ciudad3);
-			estservice.save(est1, ciudad1.getId());*/
+			Establecimiento est1 = new Establecimiento("Bideluze", "60588952", Year.now());
+			Establecimiento est2 = new Establecimiento("Quijote", "60588882", Year.now());
+			est1.setDireccion(new Direccion("Plaza Guipuzcoa", 20004, "7"));
+			est2.setDireccion(new Direccion("Avenida Libertad", 20004, "22"));
+			est1.setCiudad(donostia);
+			est2.setCiudad(bilbao);
 			
-			
-			//Relacion Many to Many
-			Direccion d1 = new Direccion("Plaza Guipuzcoa", 20005, "16");
-			Ciudad ciudad2 = new Ciudad(2l, "Bilbao", "Bizkaia", "Esto es Bilbao");
-			Pintxo pintxo1 = new Pintxo("Pintxo gilda", "scmsdcsd", "extra1");
-			Establecimiento est1 = new Establecimiento("Quijote", "233242", Year.now(), d1 ,ciudad2);
-			ciudadservice.save(ciudad2);
-			pintxoservice.save(pintxo1);
 			estservice.save(est1);
+			estservice.save(est2);
 			
-			EstablecimientoPintxo establecimientoPintxo1 = new EstablecimientoPintxo(3.0, pintxo1, est1);
+			Pintxo bonito = new Pintxo("Bonito", "etcccc", "extra1");
+			Pintxo bacalao = new Pintxo("Bacalao", "etcccc", "extra2");
+			pintxoservice.save(bonito);
+			pintxoservice.save(bacalao);
+
+			EstablecimientoPintxo estPin = new EstablecimientoPintxo(3.00, bonito, est1);
+			estPinservice.save(estPin);
+			
+			roleservice.save(rol1);
+			roleservice.save(rol2);
+			userservice.save(user1);
+			
+			Favorito fav = new Favorito(bonito, user1);
+			Favorito fav2 = new Favorito(bacalao, user1);
+			favoritoservice.save(fav);
+			favoritoservice.save(fav2);
+			
+			Opinion opinion1 = new Opinion(bonito, user1, "Muy muy bueno", 8);
+			opinionservice.save(opinion1);*/
 			
 			
-			estPinrepository.save(establecimientoPintxo1);
-			
-			// Relacion Many to Many Bebidas
-			Bebida bebida1 = new Bebida("Coca-Cola", 30, "Coca-Cola", "Bebida energetica", "España");
-			bebidaservice.save(bebida1);
-			ciudadservice.save(ciudad2);
-			estservice.save(est1);
-			Bebidas_alc bebAlc = new Bebidas_alc(1l, null, 0, null, null, null, 0, null, null);
-			bebidaservice.save(bebAlc);
-			
-			EstablecimientoBebida establecimientoBebida1 = new EstablecimientoBebida(2.5, bebAlc, est1);
-			
-			estBebrepository.save(establecimientoBebida1);
 		};
 	}
 
