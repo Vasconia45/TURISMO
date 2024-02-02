@@ -113,88 +113,116 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>NEW USER</title>
-  <!-- CSS MAIN -->
-  <link rel="stylesheet" th:href="@{/css/adminViews/newUser.css}" />
-  <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
+<title>NEW USER</title>
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+	integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+	crossorigin="anonymous" referrerpolicy="no-referrer" />
+<!-- CSS MAIN -->
+<link rel="stylesheet" th:href="@{/css/adminViews/newUser.css}" />
+<link rel="stylesheet"
+	href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
 </head>
 
 <body>
 
-    <div class="container">
-        <header>New User</header>
+	<div class="container">
+		<header>Nuevo usuario</header>
 
-        <form name="insertarFormulario" th:action="@{/admin/nuevoUser}"
-					th:object="${user}" method="POST">
-            <div class="form first">
-                <div class="details personal">
-                    <span class="title">User</span>
-                
-                    <div class="fields">
-                        <div class="input-field">
-                            <label>Full Name</label>
-                            <input type="text" placeholder="Enter your name" required>
-                        </div>
-                        <div class="input-field">
-                            <label>Date of Birth</label>
-                            <input type="text" placeholder="Enter your birth date" required>
-                        </div>
-                        <div class="input-field">
-                            <label>Email</label>
-                            <input type="text" placeholder="Enter your email" required>
-                        </div>
+		<form name="insertarFormulario" th:action="@{/admin/nuevoUser}"
+			th:object="${user}" method="POST">
+			<div class="form first">
+				<div class="details personal">
+					<span class="title">Usuario</span>
 
-                        <div class="input-field">
-                            <label>Full Name</label>
-                            <input type="text" placeholder="Enter your name" required>
-                        </div>
+					<div class="fields">
+						<div class="input-field">
+							<label>Nombre <i class="fa-solid fa-asterisk required"></i></label>
+							<input type="text" placeholder="Introduzca su nombre"
+								th:field="*{nombre}" th:id="floatingNombre" th:name="nombre">
+							<td th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}">Name
+								Error</td>
+						</div>
+						<div class="input-field">
+							<label>Nombre de usuario <i
+								class="fa-solid fa-asterisk required"></i></label> <input type="text"
+								placeholder="Introduzca su usuario" th:field="*{nombre_usuario}"
+								th:id="floatingNombreUs" th:name="nombre_usuario">
+							<td th:if="${#fields.hasErrors('nombre_usuario')}"
+								th:errors="*{nombre_usuario}">Name Error</td>
+						</div>
+						<div class="input-field">
+							<label>Teléfono</label> <input type="text" th:field="*{phone}"
+								placeholder="Introduzca su teléfono" th:id="floatingPhone"
+								th:name="phone">
+							<td th:if="${#fields.hasErrors('phone')}" th:errors="*{phone}">Name
+								Error</td>
+						</div>
 
-                        <div class="input-field">
-                            <label>Date of Birth</label>
-                            <input type="text" placeholder="Enter your birth date" required>
-                        </div>
-                    </div>
-                </div>
+						<div class="input-field">
+							<label>Email <i class="fa-solid fa-asterisk required"></i></label>
+							<input type="email" th:field="*{email}"
+								placeholder="Introduzca su email" th:id="floatingEmail"
+								th:name="email">
+							<td th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Name
+								Error</td>
+						</div>
 
-                <div class="details ID">
-                    <span class="title">Direccion</span>
-                
-                    <div class="fields">
-                        <div class="input-field">
-                            <label>Full Name</label>
-                            <input type="text" placeholder="Enter your name" required>
-                        </div>
-                        <div class="input-field">
-                            <label>Date of Birth</label>
-                            <input type="text" placeholder="Enter your birth date" required>
-                        </div>
-                        <div class="input-field">
-                            <label>Email</label>
-                            <input type="text" placeholder="Enter your email" required>
-                        </div>
-                    </div>
-                </div>
+						<div class="input-field">
+							<label>Contraseña <i
+								class="fa-solid fa-asterisk required"></i></label> <input
+								type="password" th:field="*{password}"
+								placeholder="Introduzca su contraseña" th:id="floatingPassword"
+								th:name="password">
+							<td th:if="${#fields.hasErrors('password')}"
+								th:errors="*{password}">Name Error</td>
+						</div>
+					</div>
+				</div>
 
-                <div class="details ID">
-                    <span class="title">Rol</span>
-                
-                    <div class="selector">
-                        <div class="input-field">
-                            <label>Full Name</label>
-                            <select th:field="*{role}" th:id="floatingRol"
-									class="form-select" aria-label="Default select example">
-                                <option th:each="rol : ${roles}" th:value="${rol.id}"0
-										th:text="${rol.tipo}" th:name="rol" th:selected="Select"></option>
-                            </select>
-                        </div>
-                    </div>
-                </div>
+				<div class="details ID">
+					<span class="title">Direccion</span>
 
-                <button class="nextBtn">
-                    <i class="uil uil-navigator"></i>
-                </button>
-            </div>
-        </form>
-    </div>
+					<div class="fields">
+						<div class="input-field">
+							<label>Calle</label> <input type="text" th:field="*{direccion}"
+								placeholder="Introduzca su calle" th:id="floatingCalle"
+								th:name="calle" th:value="${calle}">
+						</div>
+						<div class="input-field">
+							<label>Codigo Postal</label> <input th:field="*{direccion}"
+								placeholder="Introduzca su codigo postal"
+								th:id="floatingCod_Postal" th:name="codigo_postal"
+								th:value="${cod_postal}">
+						</div>
+						<div class="input-field">
+							<label>Puerta</label> <input type="text" th:field="*{direccion}"
+								placeholder="Introduzca su puerta" th:id="floatingPuerta"
+								th:name="puerta" th:value="${puerta}">
+						</div>
+					</div>
+				</div>
+
+				<div class="details ID">
+					<span class="title">Rol</span>
+
+					<div class="selector">
+						<div class="input-field">
+							<label>Tipo <i class="fa-solid fa-asterisk required"></i></label>
+							<select th:field="*{role}" th:id="floatingRol"
+								class="form-select" aria-label="Default select example">
+								<option th:each="rol : ${roles}" th:value="${rol.id}"
+									th:text="${rol.tipo}" th:name="rol" th:selected="Select"></option>
+							</select>
+						</div>
+					</div>
+				</div>
+
+				<button type="submit" class="nextBtn">
+					<i class="uil uil-navigator"></i>
+				</button>
+			</div>
+		</form>
+	</div>
 </body>
 </html>

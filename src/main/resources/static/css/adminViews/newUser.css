@@ -122,6 +122,9 @@ body {
   font-weight: 500;
   color: #2e2e2e;
 }
-.input-field input:is(:focus, :valid) {
+.input-field input:is(:focus) {
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.13);
-}/*# sourceMappingURL=usuario.css.map */
+}
+.required{
+	color:red;
+}

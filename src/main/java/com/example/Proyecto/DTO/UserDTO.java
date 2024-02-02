@@ -27,6 +27,7 @@ public class UserDTO {
 	@Size(min=4, max=8, message= "{Size.userdto.nombre}")
 	private String nombre;
 	
+	@NotNull
 	private String nombre_usuario;
 
 	private Integer phone;
