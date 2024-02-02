@@ -1,5 +1,7 @@
 package com.example.Proyecto.Service;
 
+import java.util.ArrayList;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -25,5 +27,11 @@ public class RoleServiceImp implements RoleService{
 	@Override
 	public Rol getRol() {
 		return  repository.getReferenceById(2l);
+	}
+
+	@Override
+	public ArrayList<Rol> getAll() {
+		ArrayList<Rol> roles = (ArrayList<Rol>) repository.findAll();
+		return roles;
 	}
 }

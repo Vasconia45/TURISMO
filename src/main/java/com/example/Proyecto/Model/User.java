@@ -71,6 +71,19 @@ public class User {
 		this.direccion = direccion;
 		this.role = role;
 	}
+	
+	public User(String nombre, String nombre_usuario, int phone, String email, String password, LocalDateTime createdOn,
+			 Rol role) {
+		super();
+		this.nombre = nombre;
+		this.nombre_usuario = nombre_usuario;
+		this.phone = phone;
+		this.email = email;
+		this.password = password;
+		this.createdOn = createdOn;
+		this.direccion = direccion;
+		this.role = role;
+	}
 
 	public Long getId() {
 		return id;

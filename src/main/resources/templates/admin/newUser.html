@@ -1,0 +1,200 @@
+<!-- <!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<!-- CDN Font awesome
+
+<link
+	href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp"
+	rel="stylesheet">
+<title>New User</title>
+<!-- CSS MAIN
+</head>
+<body>
+	<section>
+		<div class="main" layout:fragment="page-content">
+			<div id="floatingForm">
+				<div class="title">
+					<h3>New User</h3>
+				</div>
+				<form name="insertarFormulario" th:action="@{/admin/nuevoUser}"
+					th:object="${user}" method="POST">
+					<div class="contenedor p-5">
+						<div class="input-group">
+							<h4>Datos</h4>
+							<div class="input-field">
+								<input type="text" th:field="*{nombre}"
+									class="form-control form-control-sm" placeholder="Nombre"
+									th:id="floatingNombre" th:name="nombre">
+								<td th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}">Name
+									Error</td>
+							</div>
+							<div class="input-field">
+								<input type="text" th:field="*{nombre_usuario}"
+									class="form-control form-control-sm"
+									placeholder="Nombre de usuario" th:id="floatingNombreUs"
+									th:name="nombre_usuario">
+								<td th:if="${#fields.hasErrors('nombre_usuario')}"
+									th:errors="*{nombre_usuario}">Name Error</td>
+							</div>
+							<div class="input-field">
+								<input type="text" th:field="*{phone}"
+									class="form-control form-control-sm" placeholder="Phone"
+									th:id="floatingPhone" th:name="phone">
+								<td th:if="${#fields.hasErrors('phone')}" th:errors="*{phone}">Name
+									Error</td>
+							</div>
+							<div class="input-field">
+								<input type="email" th:field="*{email}"
+									class="form-control form-control-sm" placeholder="Email"
+									th:id="floatingEmail" th:name="email">
+								<td th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Name
+									Error</td>
+							</div>
+							<div class="input-field">
+								<input type="password" th:field="*{password}"
+									class="form-control form-control-sm" placeholder="Password"
+									th:id="floatingPassword" th:name="password">
+								<td th:if="${#fields.hasErrors('password')}"
+									th:errors="*{password}">Name Error</td>
+							</div>
+						</div>
+						<div class="input-group">
+							<h4>Direccion</h4>
+							<div class="input-field">
+								<input type="text" class="form-control form-control-sm"
+									th:field="*{direccion}" placeholder="Calle"
+									th:id="floatingCalle" th:name="calle" th:value="${calle}">
+							</div>
+							<div class="input-field">
+								<input type="text" class="form-control form-control-sm"
+									th:field="*{direccion}" placeholder="Codigo postal"
+									th:id="floatingCod_Postal" th:name="codigo_postal" th:value="${cod_postal}">
+							</div>
+							<div class="input-field">
+								<input type="text" class="form-control form-control-sm"
+									th:field="*{direccion}" placeholder="Puerta"
+									th:id="floatingPuerta" th:name="puerta" th:value="${puerta}">
+							</div>
+						</div>
+						<div class="input-group">
+							<h4>Rol</h4>
+							<div class="input-field">
+								<select th:field="*{role}" th:id="floatingRol"
+									class="form-select" aria-label="Default select example">
+									<option value="">Select:</option>
+									<option th:each="rol : ${roles}" th:value="${rol.id}"0
+										th:text="${rol.tipo}" th:name="rol" th:selected="Select"></option>
+								</select>
+							</div>
+						</div>
+						<div class="btn-field2">
+							<button type="submit" id="send">SUBMIT</button>
+						</div>
+					</div>
+				</form>
+			</div>
+			<div id="floatingTable">2</div>
+		</div>
+	</section>
+</body>
+</html>-->
+
+
+
+
+
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NEW USER</title>
+  <!-- CSS MAIN -->
+  <link rel="stylesheet" th:href="@{/css/adminViews/newUser.css}" />
+  <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
+</head>
+
+<body>
+
+    <div class="container">
+        <header>New User</header>
+
+        <form name="insertarFormulario" th:action="@{/admin/nuevoUser}"
+					th:object="${user}" method="POST">
+            <div class="form first">
+                <div class="details personal">
+                    <span class="title">User</span>
+                
+                    <div class="fields">
+                        <div class="input-field">
+                            <label>Full Name</label>
+                            <input type="text" placeholder="Enter your name" required>
+                        </div>
+                        <div class="input-field">
+                            <label>Date of Birth</label>
+                            <input type="text" placeholder="Enter your birth date" required>
+                        </div>
+                        <div class="input-field">
+                            <label>Email</label>
+                            <input type="text" placeholder="Enter your email" required>
+                        </div>
+
+                        <div class="input-field">
+                            <label>Full Name</label>
+                            <input type="text" placeholder="Enter your name" required>
+                        </div>
+
+                        <div class="input-field">
+                            <label>Date of Birth</label>
+                            <input type="text" placeholder="Enter your birth date" required>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="details ID">
+                    <span class="title">Direccion</span>
+                
+                    <div class="fields">
+                        <div class="input-field">
+                            <label>Full Name</label>
+                            <input type="text" placeholder="Enter your name" required>
+                        </div>
+                        <div class="input-field">
+                            <label>Date of Birth</label>
+                            <input type="text" placeholder="Enter your birth date" required>
+                        </div>
+                        <div class="input-field">
+                            <label>Email</label>
+                            <input type="text" placeholder="Enter your email" required>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="details ID">
+                    <span class="title">Rol</span>
+                
+                    <div class="selector">
+                        <div class="input-field">
+                            <label>Full Name</label>
+                            <select th:field="*{role}" th:id="floatingRol"
+									class="form-select" aria-label="Default select example">
+                                <option th:each="rol : ${roles}" th:value="${rol.id}"0
+										th:text="${rol.tipo}" th:name="rol" th:selected="Select"></option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <button class="nextBtn">
+                    <i class="uil uil-navigator"></i>
+                </button>
+            </div>
+        </form>
+    </div>
+</body>
+</html>

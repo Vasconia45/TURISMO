@@ -7,7 +7,7 @@ public class Direccion {
 	
 	private String calle;
 	
-	private int cod_postal;
+	private String cod_postal;
 	
 	private String puerta;
 	
@@ -15,7 +15,7 @@ public class Direccion {
 		
 	}
 
-	public Direccion(String calle, int cod_postal, String puerta) {
+	public Direccion(String calle, String cod_postal, String puerta) {
 		super();
 		this.calle = calle;
 		this.cod_postal = cod_postal;
@@ -30,11 +30,11 @@ public class Direccion {
 		this.calle = calle;
 	}
 
-	public int getCod_postal() {
+	public String getCod_postal() {
 		return cod_postal;
 	}
 
-	public void setCod_postal(int cod_postal) {
+	public void setCod_postal(String cod_postal) {
 		this.cod_postal = cod_postal;
 	}
 

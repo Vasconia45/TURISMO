@@ -3,13 +3,11 @@ package com.example.Proyecto.DTO;
 import java.time.LocalDateTime;
 
 import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.validator.constraints.UniqueElements;
 
 import com.example.Proyecto.Model.Direccion;
 import com.example.Proyecto.Model.Rol;
 
 import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Null;
 import jakarta.validation.constraints.Pattern;
@@ -30,8 +28,7 @@ public class UserDTO {
 	private String nombre;
 	
 	private String nombre_usuario;
-	
-	@Null
+
 	private Integer phone;
 	
 	@NotNull
@@ -46,7 +43,6 @@ public class UserDTO {
 	@Null
 	private LocalDateTime createdOn;
 	
-	@Null
 	private Direccion direccion;
 	
 	@NotNull
