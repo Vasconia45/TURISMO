@@ -1,12 +1,15 @@
 package com.example.Proyecto.Service;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.Proyecto.DTO.UserDTO;
 import com.example.Proyecto.Model.Direccion;
+import com.example.Proyecto.Model.Rol;
 import com.example.Proyecto.Model.User;
 import com.example.Proyecto.Repository.UserRepository;
 
@@ -28,5 +31,16 @@ public class UserServiceImp implements UserService{
 	@Override
 	public void deleteAll() {
 		Userrepository.deleteAll();
+	}
+
+	@Override
+	public ArrayList<User> getAll() {
+		ArrayList<User> usuarios = (ArrayList<User>) Userrepository.findAll();
+		return usuarios;
+	}
+
+	@Override
+	public void deleteById(Long id) {
+		Userrepository.deleteById(id);
 	}
 }

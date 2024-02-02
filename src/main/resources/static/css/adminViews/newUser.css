@@ -92,6 +92,30 @@ body {
 .container form button i {
   margin: 0 6px;
 }
+.container form a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 45px;
+  font-size: 18px;
+  max-width: 200px;
+  width: 10vh;
+  border: none;
+  outline: none;
+  color: #fff;
+  border-radius: 5px;
+  margin: 25px 0;
+  background-color: #4070f4;
+  transition: all 0.3s linear;
+  text-decoration: none;
+  cursor: auto;
+}
+.container form a:hover {
+  background-color: #265df2;
+}
+.container form a i {
+  margin: 0 6px;
+}
 
 .input-field input {
   outline: none;
@@ -128,3 +152,12 @@ body {
 .required{
 	color:red;
 }
+
+.buttons {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.buttons .input-field:nth-child(2) {
+  margin-left: 3vh;
+}/

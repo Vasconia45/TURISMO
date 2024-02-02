@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -73,33 +74,38 @@ public class MainController {
 	
 	// VISTAS ADMIN
 	
-	@GetMapping("/admin")
+	@RequestMapping(value="/admin", method = RequestMethod.GET)
 	public String adminView() {
 		return "admin";
 	}
 	
-	@GetMapping("/admin/nuevoUser")
+	@RequestMapping(value="/admin/nuevoUser", method= RequestMethod.GET)
 	public String insertarNuevoUser(Model m) {
 		m.addAttribute("user", new UserDTO());
 		ArrayList<Rol> roles = roleService.getAll();
 		m.addAttribute("roles", roles);
-		m.addAttribute("direccion", new DireccionDTO("PEPE", "5251", "88"));
 		return "admin/newUser";
 	}
 	
-	@PostMapping("/admin/nuevoUser")
-	public String insertaNuevoUser(@Valid @ModelAttribute("user") UserDTO user,@Valid @ModelAttribute("direccion") DireccionDTO direccion,
-			 BindingResult bindingResults, Model model) {
-		System.out.println(direccion);
-		if(bindingResults.hasErrors()) {
-			ArrayList<Rol> roles = roleService.getAll();
-	        model.addAttribute("roles", roles);
-			return "admin/newUser";
-		}
-		else {
+	@RequestMapping(value="/admin/nuevoUser", method= RequestMethod.POST)
+	public String insertaNuevoUser(@ModelAttribute("user") UserDTO user,
+			Model model) {
 			userService.save(user);
-			return "redirect:/admin";
-		}
+			return "redirect:/admin/tableUser";
+	}
+	
+	@RequestMapping(value="/admin/tableUser", method= RequestMethod.GET)
+	public String tableUser(Model m) {
+		ArrayList<User> usuarios = userService.getAll();
+		m.addAttribute("usuarios", usuarios);
+		return "admin/tableUser";
+	}
+	
+	@RequestMapping(value="/admin/tableUser/deleteUser/{id}", method= RequestMethod.POST)
+	public String deleteUser(@PathVariable("id") Long id, Model m) {
+		System.out.println(id);
+		userService.deleteById(id);
+		return "redirect:/admin/tableUser";
 	}
 	
 	/// NEW CIUDAD

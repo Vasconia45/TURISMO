@@ -23,30 +23,30 @@ public class UserDTO {
 	
 	private Long id;
 
-	@NotNull
-	@Size(min=4, max=8, message= "{Size.userdto.nombre}")
+	/*@NotNull
+	@Size(min=4, max=8, message= "{Size.userdto.nombre}")*/
 	private String nombre;
 	
-	@NotNull
+	//@NotNull
 	private String nombre_usuario;
 
 	private Integer phone;
 	
-	@NotNull
-	@Email(message= "{Email.userdto.email}")
+	//@NotNull
+	//@Email(message= "{Email.userdto.email}")
 	private String  email;
 	
-	@NotNull
-	@Pattern(regexp = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@!$¬#])[A-Za-z\\d@!$¬#]*$", message= "{Pattern.userdto.password}")
+	//@NotNull
+	//@Pattern(regexp = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@!$¬#])[A-Za-z\\d@!$¬#]*$", message= "{Pattern.userdto.password}")
 	private String password;
 	
-	@CreationTimestamp
-	@Null
+	//@CreationTimestamp
+	//@Null
 	private LocalDateTime createdOn;
 	
 	private Direccion direccion;
 	
-	@NotNull
+	//@NotNull
 	private Rol role;
 
 	public UserDTO(String nombre,String nombre_usuario,Integer phone, String email,String password) {
