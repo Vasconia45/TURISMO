@@ -52,11 +52,24 @@ public class Proyecto1Application {
 			BebidaService bebidaservice, EstablecimientoBebidaRepository estBebrepository, FavoritoService favoritoservice,
 			OpinionService opinionservice) {
 		return env -> {
+			ciudadservice.deleteAll();
+			roleservice.deleteAll();
+			
 			Rol rol1 = new Rol(1l, "ADMIN");
 			Rol rol2 = new Rol(2l, "USER");
 			
 			roleservice.save(rol1);
 			roleservice.save(rol2);
+			
+			Ciudad donostia = new Ciudad("Donostia", "Guipuzcoa", 150000, "Tiene X habitantes");
+			Ciudad vitoria = new Ciudad("Vitoria", "Alava", 80000, "Tiene X");
+			Ciudad bilbao = new Ciudad("Bilbao", "Bizkaia", 200000, "Tiene Y");
+
+			ciudadservice.save(bilbao);
+			ciudadservice.save(donostia);
+			ciudadservice.save(vitoria);
+			
+			
 			/*favoritoservice.deleteAll();
 			opinionservice.deleteAll();
 			userservice.deleteAll();

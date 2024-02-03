@@ -23,7 +23,7 @@ public class Establecimiento {
 
 	private String nombre;
 	
-	private String telefono;
+	private String phone;
 	
 	private Year año_fundacion;
 	
@@ -41,10 +41,10 @@ public class Establecimiento {
 		super();
 	}
 
-	public Establecimiento(String nombre, String telefono, Year año_fundacion) {
+	public Establecimiento(String nombre, String phone, Year año_fundacion) {
 		super();
 		this.nombre = nombre;
-		this.telefono = telefono;
+		this.phone = phone;
 		this.año_fundacion = año_fundacion;
 	}
 	
@@ -64,12 +64,12 @@ public class Establecimiento {
 		this.nombre = nombre;
 	}
 
-	public String getTelefono() {
-		return telefono;
+	public String getPhone() {
+		return phone;
 	}
 
-	public void setTelefono(String telefono) {
-		this.telefono = telefono;
+	public void setPhone(String phone) {
+		this.phone = phone;
 	}
 
 	public Year getAño_fundacion() {

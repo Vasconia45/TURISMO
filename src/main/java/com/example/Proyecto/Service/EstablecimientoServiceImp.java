@@ -1,5 +1,7 @@
 package com.example.Proyecto.Service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,6 +23,17 @@ public class EstablecimientoServiceImp implements EstablecimientoService{
 	public void deleteAll() {
 		estrepository.deleteAll();
 		
+	}
+
+	@Override
+	public List<Establecimiento> getAll() {
+		List<Establecimiento> establecimientos = estrepository.findAll();
+		return establecimientos;
+	}
+
+	@Override
+	public void deleteById(Long id) {
+		estrepository.deleteById(id);
 	}
 
 }

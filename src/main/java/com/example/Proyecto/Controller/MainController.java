@@ -2,6 +2,7 @@ package com.example.Proyecto.Controller;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -18,10 +19,14 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.Proyecto.DTO.DireccionDTO;
 import com.example.Proyecto.DTO.UserDTO;
+import com.example.Proyecto.Model.Ciudad;
 import com.example.Proyecto.Model.Direccion;
 import com.example.Proyecto.Model.Establecimiento;
+import com.example.Proyecto.Model.Pintxo;
 import com.example.Proyecto.Model.Rol;
 import com.example.Proyecto.Model.User;
+import com.example.Proyecto.Service.CiudadService;
+import com.example.Proyecto.Service.EstablecimientoService;
 import com.example.Proyecto.Service.RoleService;
 import com.example.Proyecto.Service.UserService;
 
@@ -36,6 +41,12 @@ public class MainController {
 	
 	@Autowired
 	private RoleService roleService;
+	
+	@Autowired
+	private CiudadService ciudadService;
+	
+	@Autowired
+	private EstablecimientoService estService;
 	
 	// INICIO
 	
@@ -103,16 +114,49 @@ public class MainController {
 	
 	@RequestMapping(value="/admin/tableUser/deleteUser/{id}", method= RequestMethod.POST)
 	public String deleteUser(@PathVariable("id") Long id, Model m) {
-		System.out.println(id);
 		userService.deleteById(id);
 		return "redirect:/admin/tableUser";
 	}
 	
-	/// NEW CIUDAD
+	/// NEW ESTABLECIMIENTO
 	
 	@RequestMapping(value="/admin/nuevoEstablecimiento", method = RequestMethod.GET)
-	public String insertaNuevoEstablecimiento(Model m) {
+	public String insertarNuevoEstablecimiento(Model m) {
 		m.addAttribute("est", new Establecimiento());
+		ArrayList<Ciudad> ciudades = ciudadService.getAll();
+		m.addAttribute("ciudades", ciudades);
 		return "admin/newEstablecimiento";
+	}
+	
+	@RequestMapping(value="/admin/nuevoEstablecimiento", method = RequestMethod.POST)
+	public String insertaNuevoEstablecimiento(@ModelAttribute("est") Establecimiento est, Model m) {
+		estService.save(est);
+		return "redirect:/admin/tableEstablecimiento";
+	}
+	
+	@RequestMapping(value="/admin/tableEstablecimiento", method= RequestMethod.GET)
+	public String tableEstablecimiento(Model m) {
+		List<Establecimiento> establecimientos = estService.getAll();
+		m.addAttribute("establecimientos", establecimientos);
+		return "admin/tableEstablecimiento";
+	}
+	
+	@RequestMapping(value="/admin/tableEstablecimiento/deleteEst/{id}", method= RequestMethod.POST)
+	public String deleteEstablecimiento(@PathVariable("id") Long id, Model m) {
+		estService.deleteById(id);
+		return "redirect:/admin/tableEstablecimiento";
+	}
+	
+	
+	@RequestMapping(value="/admin/nuevoPintxo", method = RequestMethod.GET)
+	public String insertarNuevoPintxo(Model m) {
+		m.addAttribute("pintxo", new Pintxo());
+		return "admin/newPintxo";
+	}
+	
+	@RequestMapping(value="/admin/nuevoPintxo", method = RequestMethod.POST)
+	public String insertaNuevoPintxo(@ModelAttribute("pintxo") Pintxo est, Model m) {
+		
+		return "redirect:/admin";
 	}
 }

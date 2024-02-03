@@ -1,5 +1,7 @@
 package com.example.Proyecto.Service;
 
+import java.util.ArrayList;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,6 +23,12 @@ public class CiudadServiceImp implements CiudadService{
 	public void deleteAll() {
 		repository.deleteAll();
 		
+	}
+
+	@Override
+	public ArrayList<Ciudad> getAll() {
+		ArrayList<Ciudad> ciudades = (ArrayList<Ciudad>) repository.findAll();
+		return ciudades;
 	}
 
 }
