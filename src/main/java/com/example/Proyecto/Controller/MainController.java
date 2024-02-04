@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestAttribute;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -47,6 +48,9 @@ public class MainController {
 	
 	@Autowired
 	private EstablecimientoService estService;
+	
+	private List<String> ingredientes = new ArrayList<>();
+
 	
 	// INICIO
 	
@@ -151,12 +155,21 @@ public class MainController {
 	@RequestMapping(value="/admin/nuevoPintxo", method = RequestMethod.GET)
 	public String insertarNuevoPintxo(Model m) {
 		m.addAttribute("pintxo", new Pintxo());
+		m.addAttribute("ingredientes", new ArrayList<>());
 		return "admin/newPintxo";
 	}
 	
 	@RequestMapping(value="/admin/nuevoPintxo", method = RequestMethod.POST)
-	public String insertaNuevoPintxo(@ModelAttribute("pintxo") Pintxo est, Model m) {
+	public String insertaNuevoPintxo(@ModelAttribute("pintxo") Pintxo pintxo, Model m) {
 		
 		return "redirect:/admin";
+	}
+	
+	@RequestMapping(value="/admin/nuevoPintxo/agregaIng", method = RequestMethod.GET)
+	public String agregaIngrediente(@RequestParam(name="ingrediente") String ingrediente, Model m) {
+		System.out.println(ingrediente);
+		ingredientes.add(ingrediente);
+		m.addAttribute("ingredientes", ingredientes);
+		return "admin/nuevoPintxo";
 	}
 }
