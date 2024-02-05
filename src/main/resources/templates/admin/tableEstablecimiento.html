@@ -36,8 +36,8 @@
 							</tr>
 						</thead>
 						<tbody>
-							<tr class="emptyMess" th:if="${establecimientos.size == 0}">
-								<th>NINGÚN DATO DISPONIBLE  </th>
+							<tr th:if="${establecimientos.size == 0}">
+								<th colspan="9">NINGÚN DATO DISPONIBLE  </th>
 							</tr>
 							<tr th:each="est: ${establecimientos}">
 								<td th:value="${est.id}" th:text="${est.id}" th:name="ID"></td>

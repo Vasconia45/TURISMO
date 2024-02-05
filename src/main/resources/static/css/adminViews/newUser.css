@@ -149,6 +149,9 @@ body {
 .input-field input:is(:focus) {
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.13);
 }
+.input-field .especialBtn{
+  margin-top: 42px;
+}
 .required{
 	color:red;
 }
@@ -160,4 +163,8 @@ body {
 }
 .buttons .input-field:nth-child(2) {
   margin-left: 3vh;
-}/
+}
+table tr{
+	display: flex;
+	flex-direction: row;
+}

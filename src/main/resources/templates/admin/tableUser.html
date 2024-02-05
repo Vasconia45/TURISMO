@@ -19,51 +19,69 @@
 
 	<div class="container">
 		<header>Usuarios</header>
-			<div class="form first">
-				<div class="details personal">
-					<table class="content-table">
-						<thead>
-							<tr>
-								<th>ID</th>
-								<th>Nombre</th>
-								<th>Nombre de usuario</th>
-								<th>Teléfono</th>
-								<th>Email</th>
-								<th>Contraseña</th>
-								<th>Calle</th>
-								<th>Codigo postal</th>
-								<th>Puerta</th>
-								<th>Rol</th>
-								<th></th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr th:each="usuario: ${usuarios}">
-								<td th:value="${usuario.id}" th:text="${usuario.id}" th:name="ID"></td>
-								<td th:value="${usuario.nombre}" th:text="${usuario.nombre}" th:name="nombre"></td>
-								<td th:value="${usuario.nombre_usuario}" th:text="${usuario.nombre_usuario}" th:name="nombre_usuario"></td>
-								<td th:value="${usuario.phone}" th:text="${usuario.phone}" th:name="teléfono"></td>
-								<td th:value="${usuario.email}" th:text="${usuario.email}" th:name="email"></td>
-								<td th:value="${usuario.password}" th:text="${usuario.password}" th:name="contraseña" class="hidetext"></td>
-								<td th:value="${usuario.direccion.calle}" th:text="${usuario.direccion.calle}" th:name="calle"></td>
-								<td th:value="${usuario.direccion.cod_postal}" th:text="${usuario.direccion.cod_postal}" th:name="cod_postal"></td>
-								<td th:value="${usuario.direccion.puerta}" th:text="${usuario.direccion.puerta}" th:name="puerta"></td>
-								<td th:value="${usuario.role.tipo}" th:text="${usuario.role.tipo}" th:name="rol_id"></td>
-								<td>
-									<div class="buttons">
-										<div class="input-field">
-											<button type="submit" class="editBtn"><i class="fa-solid fa-pen-to-square"></i></button>
-										</div>
-										<div class="input-field">
-										<form th:action="@{/admin/tableUser/deleteUser/{id}(id = ${usuario.id})}" method="POST" >
-											<button type="submit" class="editBtn"><i class="fa-solid fa-trash-can"></i></button>
-										</form>
-										</div>
+		<div class="form first">
+			<div class="details personal">
+				<table class="content-table">
+					<thead>
+						<tr>
+							<th>ID</th>
+							<th>Nombre</th>
+							<th>Nombre de usuario</th>
+							<th>Teléfono</th>
+							<th>Email</th>
+							<th>Contraseña</th>
+							<th>Calle</th>
+							<th>Codigo postal</th>
+							<th>Puerta</th>
+							<th>Rol</th>
+							<th></th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:if="${usuarios.size == 0}">
+							<th colspan="9">NINGÚN DATO DISPONIBLE</th>
+						</tr>
+						<tr th:each="usuario: ${usuarios}">
+							<td th:value="${usuario.id}" th:text="${usuario.id}" th:name="ID"></td>
+							<td th:value="${usuario.nombre}" th:text="${usuario.nombre}"
+								th:name="nombre"></td>
+							<td th:value="${usuario.nombre_usuario}"
+								th:text="${usuario.nombre_usuario}" th:name="nombre_usuario"></td>
+							<td th:value="${usuario.phone}" th:text="${usuario.phone}"
+								th:name="teléfono"></td>
+							<td th:value="${usuario.email}" th:text="${usuario.email}"
+								th:name="email"></td>
+							<td th:value="${usuario.password}" th:text="${usuario.password}"
+								th:name="contraseña" class="hidetext"></td>
+							<td th:value="${usuario.direccion.calle}"
+								th:text="${usuario.direccion.calle}" th:name="calle"></td>
+							<td th:value="${usuario.direccion.cod_postal}"
+								th:text="${usuario.direccion.cod_postal}" th:name="cod_postal"></td>
+							<td th:value="${usuario.direccion.puerta}"
+								th:text="${usuario.direccion.puerta}" th:name="puerta"></td>
+							<td th:value="${usuario.role.tipo}"
+								th:text="${usuario.role.tipo}" th:name="rol_id"></td>
+							<td>
+								<div class="buttons">
+									<div class="input-field">
+										<button type="submit" class="editBtn">
+											<i class="fa-solid fa-pen-to-square"></i>
+										</button>
 									</div>
-								</td>
-							</tr>
-						</tbody>
-					</table>
+									<div class="input-field">
+										<form
+											th:action="@{/admin/tableUser/deleteUser/{id}(id = ${usuario.id})}"
+											method="POST">
+											<button type="submit" class="editBtn">
+												<i class="fa-solid fa-trash-can"></i>
+											</button>
+										</form>
+									</div>
+								</div>
+							</td>
+						</tr>
+					</tbody>
+				</table>
 				<div class="buttons">
 					<div class="input-field">
 						<a th:href="@{'/admin'}" class="editBtn"> <i
@@ -72,7 +90,7 @@
 					</div>
 				</div>
 			</div>
-			</div>
+		</div>
 	</div>
 </body>
 </html>

@@ -34,48 +34,22 @@
 							<td th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}">Name
 								Error</td>
 						</div>
-						
 
-						<label for="ingrediente">Nuevo Ingrediente:</label>
-						<input type="text" id="ingrediente" name="ingrediente">
-						<button type="submit" th:formaction="@{/admin/nuevoPintxo/agregaIng}">Agregar</button>
-						
-						<ul>
-							<li th:each="ingrediente : ${ingredientes}"
-								th:text="${ingrediente}"></li>
-						</ul>
-						<!-- <div class="input-field">
-							<label>Ingrediente <i
-								class="fa-solid fa-asterisk required"></i></label> <input type="text"
-								placeholder="Introduzca el ingrediente" th:text="${ingrediente}" th:name="ing">
-							<button type="submit"
+						<div class="input-field">
+							<label for="ingrediente">Nuevo Ingrediente:</label> <input
+								type="text" placeholder="Introduzca un ingrediente"
+								th:id="floatingIng" th:name="ingrediente">
+						</div>
+						<div class="input-field">
+							<button class="especialBtn" type="submit"
 								th:formaction="@{/admin/nuevoPintxo/agregaIng}">
 								<i class="fa-solid fa-plus"></i>
 							</button>
 						</div>
-						<div class="input-field">
-							<table class="content-table">
-								<thead>
-									<tr>
-										<th>Ingredientes</th>
-									</tr>
-								</thead>
-								<tbody>
-									<tr>
-										<td th:each="ingrediente : ${ingredientes}" th:text="${ingrediente}"></td>
-									</tr>
-								</tbody>
-							</table>
-						</div>-->
-						<!-- <div class="input-field">
-							<label>Año de Fundación <i
-								class="fa-solid fa-asterisk required"></i></label> <input type="text"
-								th:field="*{año_fundacion}"
-								placeholder="Introduzca el año de fundación" th:id="floatingAño"
-								th:name="año_fundacion">
-							<td th:if="${#fields.hasErrors('año_fundacion')}"
-								th:errors="*{año_fundacion}">Name Error</td>
-						</div>-->
+					</div>
+					<div class="input-field">
+						<h4>Ingredientes</h4>
+						<input type="text" th:text="${ing}" th:value="${ing}" th:name="test">
 					</div>
 				</div>
 				<div class="buttons">

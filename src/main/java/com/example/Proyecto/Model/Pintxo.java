@@ -1,6 +1,7 @@
 package com.example.Proyecto.Model;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import jakarta.persistence.CascadeType;
@@ -19,7 +20,7 @@ public class Pintxo {
 	
 	private String nombre;
 	
-	private String ingredientes;
+	private List<String> ingredientes;
 	
 	private String extra;
 	
@@ -36,7 +37,7 @@ public class Pintxo {
 		super();
 	}
 
-	public Pintxo(String nombre, String ingredientes, String extra) {
+	public Pintxo(String nombre, List<String> ingredientes, String extra) {
 		super();
 		this.nombre = nombre;
 		this.ingredientes = ingredientes;
@@ -67,11 +68,11 @@ public class Pintxo {
 		this.nombre = nombre;
 	}
 
-	public String getIngredientes() {
+	public List<String> getIngredientes() {
 		return ingredientes;
 	}
 
-	public void setIngredientes(String ingredientes) {
+	public void setIngredientes(List<String> ingredientes) {
 		this.ingredientes = ingredientes;
 	}
 

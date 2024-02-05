@@ -1,6 +1,5 @@
 package com.example.Proyecto.Controller;
 
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,16 +11,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestAttribute;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.example.Proyecto.DTO.DireccionDTO;
 import com.example.Proyecto.DTO.UserDTO;
 import com.example.Proyecto.Model.Ciudad;
-import com.example.Proyecto.Model.Direccion;
 import com.example.Proyecto.Model.Establecimiento;
 import com.example.Proyecto.Model.Pintxo;
 import com.example.Proyecto.Model.Rol;
@@ -155,7 +150,7 @@ public class MainController {
 	@RequestMapping(value="/admin/nuevoPintxo", method = RequestMethod.GET)
 	public String insertarNuevoPintxo(Model m) {
 		m.addAttribute("pintxo", new Pintxo());
-		m.addAttribute("ingredientes", new ArrayList<>());
+		m.addAttribute("ingredientes", ingredientes);
 		return "admin/newPintxo";
 	}
 	
@@ -167,9 +162,14 @@ public class MainController {
 	
 	@RequestMapping(value="/admin/nuevoPintxo/agregaIng", method = RequestMethod.GET)
 	public String agregaIngrediente(@RequestParam(name="ingrediente") String ingrediente, Model m) {
-		System.out.println(ingrediente);
 		ingredientes.add(ingrediente);
+		String ing = "";
+		for(int i = 0; i < ingredientes.size(); i++){
+			ing = ing + ingredientes.get(i) + ",";
+		}
+		System.out.println(ing);
+		m.addAttribute("ing", ing);
 		m.addAttribute("ingredientes", ingredientes);
-		return "admin/nuevoPintxo";
+		return "redirect:/admin/nuevoPintxo";
 	}
 }
