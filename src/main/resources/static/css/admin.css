@@ -1,4 +1,5 @@
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap");
+@import "https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap";
+
 :root {
   --color-primary: #6C9BCF;
   --color-danger: #FF0060;
@@ -32,8 +33,8 @@
   padding: 0;
   outline: 0;
   -webkit-appearance: 0;
-     -moz-appearance: 0;
-          appearance: 0;
+  -moz-appearance: 0;
+  appearance: 0;
   border: 0;
   text-decoration: none;
   box-sizing: border-box;
@@ -49,8 +50,8 @@ body {
   font-family: "Poppins", sans-serif;
   font-size: 0.88rem;
   -webkit-user-select: none;
-     -moz-user-select: none;
-          user-select: none;
+  -moz-user-select: none;
+  user-select: none;
   overflow-x: hidden;
   color: var(--color-dark);
   background-color: var(--color-background);
@@ -64,7 +65,7 @@ img {
   display: block;
   width: 100%;
   -o-object-fit: cover;
-     object-fit: cover;
+  object-fit: cover;
 }
 
 h1 {
@@ -125,29 +126,6 @@ b {
 aside {
   height: 100vh;
 }
-
-aside .toggle {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-top: 1.3vh;
-}
-
-aside .toggle .logo {
-  display: flex;
-  gap: 0.5rem;
-}
-
-aside .toggle .logo img {
-  width: 2rem;
-  height: 2rem;
-}
-
-aside .toggle .close {
-  padding-right: 1rem;
-  display: none;
-}
-
 aside .sidebar {
   display: flex;
   flex-direction: column;
@@ -159,11 +137,9 @@ aside .sidebar {
   top: 1.5rem;
   transition: all 0.3s ease;
 }
-
 aside .sidebar:hover {
   box-shadow: none;
 }
-
 aside .sidebar a {
   display: flex;
   align-items: center;
@@ -173,46 +149,42 @@ aside .sidebar a {
   position: relative;
   margin-left: 2rem;
   transition: all 0.3s ease;
+  width: 100%;
+  height: 3.4rem;
 }
-
 aside .sidebar a span {
   font-size: 1.6rem;
   transition: all 0.3s ease;
 }
-
 aside .sidebar a:last-child {
   position: absolute;
   bottom: 2rem;
   width: 100%;
+  position: absolute;
+  bottom: 5rem;
 }
-
+aside .sidebar a:hover {
+  color: var(--color-primary);
+}
+aside .sidebar a:hover span {
+  margin-left: 0.6rem;
+}
 aside .sidebar a.active {
   width: 100%;
   color: var();
   background-color: var(--color-light);
   margin-left: 0;
 }
-
 aside .sidebar a.active::before {
   content: "";
   width: 6px;
   height: 18px;
   background-color: var(--color-primary);
 }
-
 aside .sidebar a.active span {
   color: var(--color-primary);
   margin-left: calc(1rem - 3px);
 }
-
-aside .sidebar a:hover {
-  color: var(--color-primary);
-}
-
-aside .sidebar a:hover span {
-  margin-left: 0.6rem;
-}
-
 aside .sidebar .message-count {
   background-color: var(--color-danger);
   padding: 2px 6px;
@@ -220,19 +192,27 @@ aside .sidebar .message-count {
   font-size: 11px;
   border-radius: var(--border-radius-1);
 }
-
-main {
-  margin-top: 1.4rem;
-  width: 108%;
+aside .sidebar h3 {
+  display: inline;
+}
+aside .logo {
+  margin-left: 1rem;
+}
+aside .logo h2 {
+  display: inline;
 }
 
+main {
+  width: 108%;
+  margin-top: 0.6rem;
+  padding: 0 1rem;
+}
 main .analyse {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 1.6rem;
   width: 100%;
 }
-
 main .analyse > div {
   background-color: var(--color-white);
   padding: var(--card-padding);
@@ -242,59 +222,24 @@ main .analyse > div {
   cursor: pointer;
   transition: all 0.3s ease;
 }
-
 main .analyse > div:hover {
   box-shadow: none;
 }
-
 main .analyse > div .status {
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
-
 main .analyse h3 {
   margin-left: 0.6rem;
   font-size: 1rem;
 }
-
 main .analyse .progresss {
   position: relative;
   width: 92px;
   height: 92px;
   border-radius: 50%;
 }
-
-main .analyse svg {
-  width: 7rem;
-  height: 7rem;
-}
-
-main .analyse svg circle {
-  fill: none;
-  stroke-width: 10;
-  stroke-linecap: round;
-  transform: translate(5px, 5px);
-}
-
-main .analyse .sales svg circle {
-  stroke: var(--color-success);
-  stroke-dashoffset: -30;
-  stroke-dasharray: 200;
-}
-
-main .analyse .visits svg circle {
-  stroke: var(--color-danger);
-  stroke-dashoffset: -30;
-  stroke-dasharray: 200;
-}
-
-main .analyse .searches svg circle {
-  stroke: var(--color-primary);
-  stroke-dashoffset: -30;
-  stroke-dasharray: 200;
-}
-
 main .analyse .progresss .percentage {
   position: absolute;
   top: -3px;
@@ -305,11 +250,34 @@ main .analyse .progresss .percentage {
   height: 100%;
   width: 100%;
 }
-
+main .analyse svg {
+  width: 7rem;
+  height: 7rem;
+}
+main .analyse svg circle {
+  fill: none;
+  stroke-width: 10;
+  stroke-linecap: round;
+  transform: translate(5px, 5px);
+}
+main .analyse .sales svg circle {
+  stroke: var(--color-success);
+  stroke-dashoffset: -30;
+  stroke-dasharray: 200;
+}
+main .analyse .visits svg circle {
+  stroke: var(--color-danger);
+  stroke-dashoffset: -30;
+  stroke-dasharray: 200;
+}
+main .analyse .searches svg circle {
+  stroke: var(--color-primary);
+  stroke-dashoffset: -30;
+  stroke-dasharray: 200;
+}
 main .new-users {
   margin-top: 1.3rem;
 }
-
 main .new-users .user-list {
   background-color: var(--color-white);
   padding: var(--card-padding);
@@ -323,33 +291,31 @@ main .new-users .user-list {
   cursor: pointer;
   transition: all 0.3s ease;
 }
-
 main .new-users .user-list:hover {
   box-shadow: none;
 }
-
 main .new-users .user-list .user {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  flex-basis: 35%;
 }
-
 main .new-users .user-list .user img {
   width: 5rem;
   height: 5rem;
   margin-bottom: 0.4rem;
   border-radius: 50%;
 }
-
 main .recent-orders {
   margin-top: 1.3rem;
+  position: relative;
+  margin: 3rem 0 0 0;
+  width: 100%;
 }
-
 main .recent-orders h2 {
   margin-bottom: 0.8rem;
 }
-
 main .recent-orders table {
   background-color: var(--color-white);
   width: 100%;
@@ -358,80 +324,25 @@ main .recent-orders table {
   box-shadow: var(--box-shadow);
   border-radius: var(--card-border-radius);
   transition: all 0.3s ease;
+  width: 100%;
+  margin: 0;
 }
-
 main .recent-orders table:hover {
   box-shadow: none;
 }
-
-main table tbody td {
-  height: 2.8rem;
-  border-bottom: 1px solid var(--color-light);
-  color: var(--color-dark-variant);
-}
-
-main table tbody tr:last-child td {
-  border: none;
-}
-
 main .recent-orders a {
   text-align: center;
   display: block;
   margin: 1rem auto;
   color: var(--color-primary);
 }
-
-.right-section {
-  margin-top: 1.4rem;
-}
-
-.right-section .nav {
-  display: flex;
-  justify-content: end;
-  gap: 2rem;
-}
-
-.right-section .nav button {
-  display: none;
-}
-
-.right-section .dark-mode {
-  background-color: var(--color-light);
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  height: 1.6rem;
-  width: 4.2rem;
-  cursor: pointer;
-  border-radius: var(--border-radius-1);
-}
-
-.right-section .dark-mode span {
-  font-size: 1.2rem;
-  width: 50%;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.right-section .dark-mode span.active {
-  background-color: var(--color-primary);
-  color: white;
-  border-radius: var(--border-radius-1);
-}
-
-.right-section .nav .profile {
-  display: flex;
-  gap: 2rem;
-  text-align: right;
-}
-
-.right-section .nav .profile .profile-photo {
-  width: 2.8rem;
+main table tbody td {
   height: 2.8rem;
-  border-radius: 50%;
-  overflow: hidden;
+  border-bottom: 1px solid var(--color-light);
+  color: var(--color-dark-variant);
+}
+main table tbody tr:last-child td {
+  border: none;
 }
 
 @media screen and (max-width: 1200px) {
@@ -469,11 +380,15 @@ main .recent-orders a {
   main .recent-orders table {
     width: 83vw;
   }
-  main table thead tr th:last-child,
+  main table thead tr th:last-child {
+    display: none;
+  }
   main table thead tr th:first-child {
     display: none;
   }
-  main table tbody tr td:last-child,
+  main table tbody tr td:last-child {
+    display: none;
+  }
   main table tbody tr td:first-child {
     display: none;
   }
@@ -500,77 +415,4 @@ main .recent-orders a {
       left: 0;
     }
   }
-  aside .logo {
-    margin-left: 1rem;
-  }
-  aside .logo h2 {
-    display: inline;
-  }
-  aside .sidebar h3 {
-    display: inline;
-  }
-  aside .sidebar a {
-    width: 100%;
-    height: 3.4rem;
-  }
-  aside .sidebar a:last-child {
-    position: absolute;
-    bottom: 5rem;
-  }
-  aside .toggle .close {
-    display: inline-block;
-    cursor: pointer;
-  }
-  main {
-    margin-top: 8rem;
-    padding: 0 1rem;
-  }
-  main .new-users .user-list .user {
-    flex-basis: 35%;
-  }
-  main .recent-orders {
-    position: relative;
-    margin: 3rem 0 0 0;
-    width: 100%;
-  }
-  main .recent-orders table {
-    width: 100%;
-    margin: 0;
-  }
-  .right-section {
-    width: 94%;
-    margin: 0 auto 4rem;
-  }
-  .right-section .nav {
-    position: fixed;
-    top: 0;
-    left: 0;
-    align-items: center;
-    background-color: var(--color-white);
-    padding: 0 var(--padding-1);
-    height: 4.6rem;
-    width: 100%;
-    z-index: 2;
-    box-shadow: 0 1rem 1rem var(--color-light);
-    margin: 0;
-  }
-  .right-section .nav .dark-mode {
-    width: 4.4rem;
-    position: absolute;
-    left: 66%;
-  }
-  .right-section .profile .info {
-    display: none;
-  }
-  .right-section .nav button {
-    display: inline-block;
-    background-color: transparent;
-    cursor: pointer;
-    color: var(--color-dark);
-    position: absolute;
-    left: 1rem;
-  }
-  .right-section .nav button span {
-    font-size: 2rem;
-  }
-}/*# sourceMappingURL=style.css.map */
+}/*# sourceMappingURL=usuario.css.map */

@@ -35,4 +35,33 @@
   background: url(../img/vitoria.jpg);
   background-size: cover;
   background-position: center;
-}/*# sourceMappingURL=ciudad.css.map */
+}
+#ciudad .ciudades h2{
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#ciudad .ciudades h2:hover{
+ transform: scale(1.3);
+ transition: 3s;
+}
+#ciudad .ciudades h2 a{
+  text-decoration: none;
+  color: white;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*# sourceMappingURL=ciudad.css.map */

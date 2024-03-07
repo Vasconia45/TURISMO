@@ -85,7 +85,9 @@ public class MainController {
 	// VISTAS ADMIN
 	
 	@RequestMapping(value="/admin", method = RequestMethod.GET)
-	public String adminView() {
+	public String adminView(Model m) {
+		int totalUsers = userService.getAll().size();
+		m.addAttribute("totalUsers", totalUsers);
 		return "admin";
 	}
 	
@@ -171,5 +173,23 @@ public class MainController {
 		m.addAttribute("ing", ing);
 		m.addAttribute("ingredientes", ingredientes);
 		return "redirect:/admin/nuevoPintxo";
+	}
+	
+	
+	// CIUDADES
+	
+	@GetMapping("/bilbao")
+	public String bilbao() {
+		return "ciudades/bilbao";
+	}
+	
+	@GetMapping("/donostia")
+	public String donostia() {
+		return "ciudades/donostia";
+	}
+	
+	@GetMapping("/vitoria")
+	public String vitoria() {
+		return "ciudades/vitoria";
 	}
 }
