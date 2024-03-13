@@ -28,7 +28,7 @@ public class UserDTO {
 	private String nombre;
 	
 	//@NotNull
-	private String nombre_usuario;
+	private String username;
 
 	private Integer phone;
 	
@@ -49,13 +49,20 @@ public class UserDTO {
 	//@NotNull
 	private Rol role;
 
-	public UserDTO(String nombre,String nombre_usuario,Integer phone, String email,String password) {
+	public UserDTO(String nombre,String username,Integer phone, String email,String password) {
 		super();
 		this.nombre = nombre;
-		this.nombre_usuario = nombre_usuario;
+		this.username = username;
 		this.phone = phone;
 		this.email = email;
 		this.password = password;
 	}
+
+	public UserDTO(String username) {
+		super();
+		this.username = username;
+	}
+	
+	
 	
 }

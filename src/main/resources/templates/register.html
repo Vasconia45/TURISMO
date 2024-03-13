@@ -22,14 +22,17 @@
 				</a>
 			</div>
 			<h1 id="title">Registro</h1>
-			<form name="insertarFormulario" th:action="@{/register}"
+			<div class="alert alert-success text-center" role="alert" th:if="${success}">
+				<span th:text="${success}"></span>
+			</div>
+			<form name="insertarFormulario"
 				th:object="${user}" method="POST">
 				<div class="input-grupo">
 					<div class="input-field" id="nombreField">
 						<i class="fa-solid fa-user"></i> <input type="text"
-							th:field="*{nombre}" class="form-control form-control-sm"
-							placeholder="Nombre" th:id="floatingNombre" name="nombre">
-						<td th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}">Name
+							th:field="*{username}" class="form-control form-control-sm"
+							placeholder="Username" th:id="floatingUsername" name="username">
+						<td th:if="${#fields.hasErrors('username')}" th:errors="*{username}">Username
 							Error</td>
 					</div>
 					<div class="input-field" id="emailField">
@@ -63,7 +66,7 @@
 						Sesion</button>
 				</div>
 				<div class="btn-field2">
-					<button type="submit" id="send">
+					<button th:formaction="@{'/register'}" type="submit" id="send">
 						<i class="fa-solid fa-paper-plane"></i>
 					</button>
 				</div>

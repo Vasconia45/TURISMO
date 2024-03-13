@@ -2,6 +2,7 @@ package com.example.Proyecto.Controller;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -17,10 +18,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.Proyecto.DTO.UserDTO;
 import com.example.Proyecto.Model.Ciudad;
+import com.example.Proyecto.Model.ERole;
 import com.example.Proyecto.Model.Establecimiento;
 import com.example.Proyecto.Model.Pintxo;
 import com.example.Proyecto.Model.Rol;
 import com.example.Proyecto.Model.User;
+import com.example.Proyecto.Repository.RoleRepository;
 import com.example.Proyecto.Service.CiudadService;
 import com.example.Proyecto.Service.EstablecimientoService;
 import com.example.Proyecto.Service.RoleService;
@@ -40,6 +43,9 @@ public class MainController {
 	
 	@Autowired
 	private CiudadService ciudadService;
+	
+	@Autowired
+	private RoleRepository roleRep;
 	
 	@Autowired
 	private EstablecimientoService estService;
@@ -62,7 +68,7 @@ public class MainController {
 		return "register";
 	}
 	
-	@PostMapping("/register")
+	/*@PostMapping("/register")
 	public String saveUser(@Valid @ModelAttribute("user") User user
 			,BindingResult bindingResults){
 		if(user.getNombre() == null) {
@@ -75,12 +81,7 @@ public class MainController {
 			//userService.save(user);		
 			return "redirect:/register?exito";
 		}
-	}
-
-	@PostMapping("/login/{id}")
-	public String login(){
-		return "cliente";
-	}
+	}*/
 	
 	// VISTAS ADMIN
 	
@@ -95,6 +96,7 @@ public class MainController {
 	public String insertarNuevoUser(Model m) {
 		m.addAttribute("user", new UserDTO());
 		ArrayList<Rol> roles = roleService.getAll();
+		System.out.println(roles.get(0).getName());
 		m.addAttribute("roles", roles);
 		return "admin/newUser";
 	}

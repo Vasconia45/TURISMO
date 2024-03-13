@@ -37,10 +37,10 @@
 						<div class="input-field">
 							<label>Nombre de usuario <i
 								class="fa-solid fa-asterisk required"></i></label> <input type="text"
-								placeholder="Introduzca su usuario" th:field="*{nombre_usuario}"
-								th:id="floatingNombreUs" th:name="nombre_usuario">
-							<td th:if="${#fields.hasErrors('nombre_usuario')}"
-								th:errors="*{nombre_usuario}">Name Error</td>
+								placeholder="Introduzca su usuario" th:field="*{username}"
+								th:id="floatingNombreUs" th:name="username">
+							<td th:if="${#fields.hasErrors('username')}"
+								th:errors="*{username}">Name Error</td>
 						</div>
 						<div class="input-field">
 							<label>Teléfono</label> <input type="text" th:field="*{phone}"
@@ -105,7 +105,7 @@
 							<select th:field="*{role}" th:id="floatingRol"
 								class="form-select" aria-label="Default select example">
 								<option th:each="rol : ${roles}" th:value="${rol.id}"
-									th:text="${rol.tipo}" th:name="rol" th:selected="Select"></option>
+									th:text="${rol.name}" th:name="rol" th:selected="Select"></option>
 							</select>
 						</div>
 					</div>

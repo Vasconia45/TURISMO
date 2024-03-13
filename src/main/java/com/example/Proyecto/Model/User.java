@@ -7,10 +7,13 @@ import java.util.Set;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 
@@ -23,7 +26,7 @@ public class User {
 
 	private String nombre;
 	
-	private String nombre_usuario;
+	private String username;
 	
 	private int phone;
 	
@@ -36,9 +39,11 @@ public class User {
 	@Embedded
 	private Direccion direccion;
 	
-	@ManyToOne()
-	@JoinColumn(name="role_id")
-	private Rol role;
+	@ManyToMany(fetch = FetchType.LAZY)
+	  @JoinTable(name = "user_roles", 
+	             joinColumns = @JoinColumn(name = "user_id"),
+	             inverseJoinColumns = @JoinColumn(name = "role_id"))
+	  private Set<Rol> roles = new HashSet<>();
 	
 	@OneToMany(mappedBy = "user", cascade =  CascadeType.REMOVE)
 	private Set<Favorito> favoritos = new HashSet<>();
@@ -50,39 +55,44 @@ public class User {
 		
 	}
 
-	public User(String nombre, String nombre_usuario, int phone, String email, String password) {
+	public User(String username, String email, String password) {
+		super();
+		this.username = username;
+		this.email = email;
+		this.password = password;
+	}
+
+
+
+	public User(String nombre, String username, int phone, String email, String password) {
 		super();
 		this.nombre = nombre;
-		this.nombre_usuario = nombre_usuario;
+		this.username = username;
 		this.phone = phone;
 		this.email = email;
 		this.password = password;
 	}
 
-	public User(String nombre, String nombre_usuario, int phone, String email, String password, LocalDateTime createdOn,
-			Direccion direccion, Rol role) {
+	public User(String nombre, String username, int phone, String email, String password, LocalDateTime createdOn,
+			Direccion direccion) {
 		super();
 		this.nombre = nombre;
-		this.nombre_usuario = nombre_usuario;
+		this.username = username;
 		this.phone = phone;
 		this.email = email;
 		this.password = password;
 		this.createdOn = createdOn;
 		this.direccion = direccion;
-		this.role = role;
 	}
 	
-	public User(String nombre, String nombre_usuario, int phone, String email, String password, LocalDateTime createdOn,
-			 Rol role) {
+	public User(String nombre, String username, int phone, String email, String password, LocalDateTime createdOn) {
 		super();
 		this.nombre = nombre;
-		this.nombre_usuario = nombre_usuario;
+		this.username = username;
 		this.phone = phone;
 		this.email = email;
 		this.password = password;
 		this.createdOn = createdOn;
-		this.direccion = direccion;
-		this.role = role;
 	}
 
 	public Long getId() {
@@ -101,12 +111,12 @@ public class User {
 		this.nombre = nombre;
 	}
 
-	public String getNombre_usuario() {
-		return nombre_usuario;
+	public String getUsername() {
+		return username;
 	}
 
-	public void setNombre_usuario(String nombre_usuario) {
-		this.nombre_usuario = nombre_usuario;
+	public void setUsername(String username) {
+		this.username = username;
 	}
 
 	public int getPhone() {
@@ -149,12 +159,12 @@ public class User {
 		this.direccion = direccion;
 	}
 
-	public Rol getRole() {
-		return role;
+	public Set<Rol> getRoles() {
+		return roles;
 	}
 
-	public void setRole(Rol role) {
-		this.role = role;
+	public void setRoles(Set<Rol> roles) {
+		this.roles = roles;
 	}
 
 	public Set<Favorito> getFavoritos() {

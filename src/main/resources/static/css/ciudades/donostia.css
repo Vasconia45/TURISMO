@@ -1,0 +1,43 @@
+@charset "UTF-8";
+
+html, body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  background: red;
+}
+
+header{
+  height: 100vh;
+}
+
+.contenedor2 {
+  width: 100%;
+  position: absolute;
+  display: flex;
+  justify-content: center;
+}
+
+.img-logo {
+  width: 25px;
+}
+
+nav {
+  justify-content: space-between;
+  align-items: center;
+  text-transform: uppercase;
+  width: 70%;
+  height: 5vh;
+  transition: 0s;
+  position: fixed;
+  z-index: 9999;
+  transition: 0.3s ease-in-out;
+}
+
+
+
+
+
+
+
+

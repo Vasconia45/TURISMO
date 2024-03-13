@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.example.Proyecto.Model.ERole;
 import com.example.Proyecto.Model.Rol;
 import com.example.Proyecto.Repository.RoleRepository;
 

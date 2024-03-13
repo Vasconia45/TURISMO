@@ -3,13 +3,18 @@ package com.example.Proyecto;
 import java.time.LocalDateTime;
 import java.time.Year;
 
+import org.hibernate.boot.model.source.spi.AttributeRole;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
+import com.example.Proyecto.DTO.UserDTO;
 import com.example.Proyecto.Model.Ciudad;
 import com.example.Proyecto.Model.Direccion;
+import com.example.Proyecto.Model.ERole;
 import com.example.Proyecto.Model.Establecimiento;
 import com.example.Proyecto.Model.EstablecimientoPintxo;
 import com.example.Proyecto.Model.Favorito;
@@ -18,6 +23,7 @@ import com.example.Proyecto.Model.Pintxo;
 import com.example.Proyecto.Model.Rol;
 import com.example.Proyecto.Model.User;
 import com.example.Proyecto.Repository.EstablecimientoBebidaRepository;
+import com.example.Proyecto.Repository.UserRepository;
 import com.example.Proyecto.Service.BebidaService;
 import com.example.Proyecto.Service.CiudadService;
 import com.example.Proyecto.Service.EstablecimientoPintxoService;
@@ -30,6 +36,9 @@ import com.example.Proyecto.Service.UserService;
 
 @SpringBootApplication
 public class Proyecto1Application {
+	
+	 @Autowired
+	  PasswordEncoder encoder;
 	
 	/*@Bean
     public MessageSource messageSource() {
@@ -47,19 +56,14 @@ public class Proyecto1Application {
     }*/
 	
 	@Bean
-	public ApplicationRunner configure(RoleService roleservice, UserService userservice, CiudadService ciudadservice, 
+	public ApplicationRunner configure(UserRepository userRepository, RoleService roleService, UserService userService, CiudadService ciudadservice, 
 			EstablecimientoPintxoService estPinservice, EstablecimientoService estservice, PintxoService pintxoservice,
 			BebidaService bebidaservice, EstablecimientoBebidaRepository estBebrepository, FavoritoService favoritoservice,
 			OpinionService opinionservice) {
 		return env -> {
 			ciudadservice.deleteAll();
-			roleservice.deleteAll();
-			
-			Rol rol1 = new Rol(1l, "ADMIN");
-			Rol rol2 = new Rol(2l, "USER");
-			
-			roleservice.save(rol1);
-			roleservice.save(rol2);
+			userService.deleteAll();
+			roleService.deleteAll();
 			
 			Ciudad donostia = new Ciudad("Donostia", "Guipuzcoa", 150000, "Tiene X habitantes");
 			Ciudad vitoria = new Ciudad("Vitoria", "Alava", 80000, "Tiene X");
@@ -69,6 +73,26 @@ public class Proyecto1Application {
 			ciudadservice.save(donostia);
 			ciudadservice.save(vitoria);
 			
+			Rol rol1 = new Rol();
+			rol1.setName(ERole.ROLE_USER);
+			
+			Rol rol2 = new Rol();
+			rol2.setName(ERole.ROLE_ADMIN);
+			
+			Rol rol3 = new Rol();
+			rol3.setName(ERole.ROLE_MODERATOR);
+
+			
+			roleService.save(rol1);
+			roleService.save(rol2);
+			roleService.save(rol3);
+			
+			User admin = new User();
+			admin.setUsername("ADMIN");
+			admin.setPassword(encoder.encode("Donosti34"));
+			
+			
+			userRepository.save(admin);
 			
 			/*favoritoservice.deleteAll();
 			opinionservice.deleteAll();

@@ -3,7 +3,10 @@ package com.example.Proyecto.Model;
 import java.util.List;
 
 import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -16,15 +19,14 @@ public class Rol {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	private String tipo;
-	
-	@OneToMany(mappedBy = "role", cascade = CascadeType.ALL)
-	private List<User> usuarios;
+	@Enumerated(EnumType.STRING)
+	  @Column(length = 20)
+	  private ERole name;
 
-	public Rol(Long id, String tipo) {
+	public Rol(Long id, ERole name) {
 		super();
 		this.id = id;
-		this.tipo = tipo;
+		this.name = name;
 	}
 	
 	public Rol() {
@@ -39,19 +41,11 @@ public class Rol {
 		this.id = id;
 	}
 
-	public String getTipo() {
-		return tipo;
+	public ERole getName() {
+		return name;
 	}
 
-	public void setTipo(String tipo) {
-		this.tipo = tipo;
-	}
-
-	public List<User> getUsuarios() {
-		return usuarios;
-	}
-
-	public void setUsuarios(List<User> usuarios) {
-		this.usuarios = usuarios;
+	public void setName(ERole name) {
+		this.name = name;
 	}
 }

@@ -2,6 +2,7 @@ package com.example.Proyecto.Service;
 
 import java.util.ArrayList;
 
+import com.example.Proyecto.Model.ERole;
 import com.example.Proyecto.Model.Rol;
 
 public interface RoleService {
