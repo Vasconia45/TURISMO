@@ -22,9 +22,7 @@
 				</a>
 			</div>
 			<h1 id="title">Registro</h1>
-			<div class="alert alert-success text-center" role="alert" th:if="${success}">
-				<span th:text="${success}"></span>
-			</div>
+			<p th:if="${message}" th:text="#{flash.message}"></p>
 			<form name="insertarFormulario"
 				th:object="${user}" method="POST">
 				<div class="input-grupo">

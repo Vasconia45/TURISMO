@@ -1,10 +1,92 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>DONOSTIA</title>
+<!-- CSS Bootstrap -->
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+	crossorigin="anonymous">
+<!-- CDN Font awesome -->
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+	integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+	crossorigin="anonymous" referrerpolicy="no-referrer" />
+<!-- CSS MAIN -->
+<link rel="stylesheet" th:href="@{css/ciudades/donostia.css}" />
+
+<link rel="stylesheet" th:href="@{css/toggle.css}" />
 </head>
 <body>
-<h1>VITORIA</h1>
+	<header>
+		<div class="contenedor2">
+			<!-- NAVBAR -->
+			<nav class="row">
+				<!-- LOGO -->
+				<a th:href="@{'/'}" class="col-auto"> <img
+					th:src="@{/img/logo-white.svg}" alt="Logo Weston" class="img-logo">
+				</a>
+				<!-- ANCLAS -->
+				<div class="col-7">
+					<h4>VITORIA</h4>
+				</div>
+			</nav>
+		</div>
+	</header>
+
+	<div class="container-img">
+	
+		<div class="box-img" th:each="est : ${establecimientos}">
+			<div class="image">
+				<img th:src="@{/img/est/default.jpg}" th:if="@{'/img/est/vitoria/' + ${est.nombre} + '.jpg'} " alt="img-galeria">
+				<img th:src="@{'/img/est/vitoria/' + ${est.nombre} + '.jpg'}" alt="img-galeria">
+			</div>
+		</div>
+
+		<div class="popup-image">
+			<span>&times;</span> <img th:src="@{/img/vitoria.jpg}"
+				alt="img-galeria">
+			<div class="form">
+				<form th:action="@{'/opinion'}" th:object="${opinion}" th:name="comentario" method="POST">
+					<p>Deja tu comentario:</p>
+					<textarea rows="5" class="form-control" id="message"
+						placeholder="Mensaje *" data-sb-validations="required"></textarea>
+						<button class="btn btn-xl text-uppercase" id="submitButton"
+            type="submit">Enviar</button>
+				</form>
+			</div>
+		</div>
+	</div>
+	<script> 
+		var nav = document.querySelector('nav');
+		
+		window.addEventListener("scroll", scroll);
+		
+		    	function scroll(){
+		    if(window.scrollY){
+		        nav.classList.add('nav-active');
+		    }else{
+		        nav.classList.remove('nav-active');
+		    }
+		}
+		
+		let img = document.querySelectorAll('img');
+		
+        document.querySelectorAll('img').forEach(image =>{
+            image.onclick = () =>{
+                console.log("ok");
+               document.querySelector('.popup-image').style.display = 'block';
+               document.querySelector('.popup-image img').src = image.getAttribute('src');
+            }
+        })
+
+        document.querySelector('.popup-image span').onclick = ()=>{
+            document.querySelector('.popup-image').style.display = 'none';
+        }
+    </script>
 </body>
 </html>

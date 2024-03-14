@@ -21,7 +21,7 @@
 		<header>Nuevo Pintxo</header>
 
 		<form name="insertarFormulario" th:action="@{/admin/nuevoPintxo}"
-			th:object="${pintxo}" method="GET">
+			th:object="${pintxo}" method="POST">
 			<div class="form first">
 				<div class="details personal">
 					<span class="title">Pintxo</span>
@@ -30,26 +30,14 @@
 						<div class="input-field">
 							<label>Nombre <i class="fa-solid fa-asterisk required"></i></label>
 							<input type="text" placeholder="Introduzca el nombre"
-								th:field="*{nombre}" th:id="floatingNombre" th:name="nombre">
-							<td th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}">Name
-								Error</td>
+							 th:field="*{nombre}" th:id="floatingNombre" th:name="nombre">
 						</div>
 
 						<div class="input-field">
 							<label for="ingrediente">Nuevo Ingrediente:</label> <input
 								type="text" placeholder="Introduzca un ingrediente"
-								th:id="floatingIng" th:name="ingrediente">
+								th:field="*{ingredientes}" th:id="floatingIng" th:name="ingrediente">
 						</div>
-						<div class="input-field">
-							<button class="especialBtn" type="submit"
-								th:formaction="@{/admin/nuevoPintxo/agregaIng}">
-								<i class="fa-solid fa-plus"></i>
-							</button>
-						</div>
-					</div>
-					<div class="input-field">
-						<h4>Ingredientes</h4>
-						<input type="text" th:text="${ing}" th:value="${ing}" th:name="test">
 					</div>
 				</div>
 				<div class="buttons">

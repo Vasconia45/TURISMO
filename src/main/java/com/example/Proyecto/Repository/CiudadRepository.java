@@ -8,4 +8,5 @@ import com.example.Proyecto.Model.Ciudad;
 @Repository
 public interface CiudadRepository extends JpaRepository<Ciudad, Long>{
 
+	Ciudad findAllByNombre(String nombre);
 }

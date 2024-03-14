@@ -20,15 +20,19 @@ import com.example.Proyecto.DTO.UserDTO;
 import com.example.Proyecto.Model.Ciudad;
 import com.example.Proyecto.Model.ERole;
 import com.example.Proyecto.Model.Establecimiento;
+import com.example.Proyecto.Model.Opinion;
 import com.example.Proyecto.Model.Pintxo;
 import com.example.Proyecto.Model.Rol;
 import com.example.Proyecto.Model.User;
 import com.example.Proyecto.Repository.RoleRepository;
 import com.example.Proyecto.Service.CiudadService;
 import com.example.Proyecto.Service.EstablecimientoService;
+import com.example.Proyecto.Service.OpinionService;
+import com.example.Proyecto.Service.PintxoService;
 import com.example.Proyecto.Service.RoleService;
 import com.example.Proyecto.Service.UserService;
 
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 
 @Controller
@@ -49,6 +53,12 @@ public class MainController {
 	
 	@Autowired
 	private EstablecimientoService estService;
+	
+	@Autowired
+	private PintxoService pintxoService;
+	
+	@Autowired
+	private OpinionService opinionService;
 	
 	private List<String> ingredientes = new ArrayList<>();
 
@@ -154,44 +164,61 @@ public class MainController {
 	@RequestMapping(value="/admin/nuevoPintxo", method = RequestMethod.GET)
 	public String insertarNuevoPintxo(Model m) {
 		m.addAttribute("pintxo", new Pintxo());
-		m.addAttribute("ingredientes", ingredientes);
 		return "admin/newPintxo";
 	}
 	
 	@RequestMapping(value="/admin/nuevoPintxo", method = RequestMethod.POST)
-	public String insertaNuevoPintxo(@ModelAttribute("pintxo") Pintxo pintxo, Model m) {
-		
+	public String insertaNuevoPintxo(@ModelAttribute("pintxo") Pintxo pintxo) {
+		System.out.println(pintxo.getNombre() +"---" + pintxo.getIngredientes());
+		pintxoService.save(pintxo);
 		return "redirect:/admin";
-	}
-	
-	@RequestMapping(value="/admin/nuevoPintxo/agregaIng", method = RequestMethod.GET)
-	public String agregaIngrediente(@RequestParam(name="ingrediente") String ingrediente, Model m) {
-		ingredientes.add(ingrediente);
-		String ing = "";
-		for(int i = 0; i < ingredientes.size(); i++){
-			ing = ing + ingredientes.get(i) + ",";
-		}
-		System.out.println(ing);
-		m.addAttribute("ing", ing);
-		m.addAttribute("ingredientes", ingredientes);
-		return "redirect:/admin/nuevoPintxo";
 	}
 	
 	
 	// CIUDADES
 	
 	@GetMapping("/bilbao")
-	public String bilbao() {
+	public String bilbao(Model m) {
+		List<Establecimiento> establecimientos = estService.getAllBilbao();
+		m.addAttribute("establecimientos", establecimientos);
 		return "ciudades/bilbao";
 	}
 	
 	@GetMapping("/donostia")
-	public String donostia() {
+	public String donostia(Model m) {
+		List<Establecimiento> establecimientos = estService.getAllDonostia();
+		m.addAttribute("establecimientos", establecimientos);
 		return "ciudades/donostia";
 	}
 	
 	@GetMapping("/vitoria")
-	public String vitoria() {
+	public String vitoria(Model m) {
+		List<Establecimiento> establecimientos = estService.getAllVitoria();
+		m.addAttribute("establecimientos", establecimientos);
 		return "ciudades/vitoria";
+	}
+	
+	// COMENTARIO 
+	
+	// Guardar opinion
+	@RequestMapping(value="/opinion", method= RequestMethod.POST)
+	public String opinion() {
+		return "redirect:/#ciudad";
+	}
+	
+	//PINTXOS
+	@RequestMapping(value="/pintxos", method = RequestMethod.GET)
+	public String pintxos(Model m) {
+		List<Pintxo> pintxos = pintxoService.getAll();
+		m.addAttribute("pintxos", pintxos);
+		m.addAttribute("opinion", new Opinion());
+		return "pintxos/donostia";
+	}
+	
+	@RequestMapping(value="/pintxos/guardar/{id}", method = RequestMethod.POST)
+	public String guardarPintxos(@PathVariable("id") Long id, @ModelAttribute("opinion") Opinion op) {
+		System.out.println(id + "----" + op.getComentario() + "---" + op.getValoracion());
+		opinionService.save(op);
+		return "redirect:/pintxos";
 	}
 }

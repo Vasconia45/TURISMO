@@ -15,6 +15,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -59,31 +60,30 @@ public class AuthController {
 	  JwtUtils jwtUtils;
 
 	  @PostMapping("/login")
-	  public ModelAndView authenticateUser(@Valid LoginRequest loginRequest) {
-		  
-	    Authentication authentication = authenticationManager
-	        .authenticate(new UsernamePasswordAuthenticationToken(loginRequest.getUsername(), loginRequest.getPassword()));
+	    public ResponseEntity<?> authenticateUser(@Valid  LoginRequest loginRequest) {
 
-	    SecurityContextHolder.getContext().setAuthentication(authentication);
+	        Authentication authentication = authenticationManager
+	                .authenticate(new UsernamePasswordAuthenticationToken(loginRequest.getUsername(), loginRequest.getPassword()));
 
-	    UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
+	        SecurityContextHolder.getContext().setAuthentication(authentication);
 
-	    ResponseCookie jwtCookie = jwtUtils.generateJwtCookie(userDetails);
+	        UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
 
-	    List<String> roles = userDetails.getAuthorities().stream()
-	        .map(item -> item.getAuthority())
-	        .collect(Collectors.toList());
-	    
-	    if(loginRequest.getUsername().equals("ADMIN")) {
-	    	return new ModelAndView("redirect:/admin");
+	        ResponseCookie jwtCookie = jwtUtils.generateJwtCookie(userDetails);
+
+	        List<String> roles = userDetails.getAuthorities().stream()
+	                .map(item -> item.getAuthority())
+	                .collect(Collectors.toList());
+
+	        return ResponseEntity.ok().header(HttpHeaders.SET_COOKIE, jwtCookie.toString())
+	                .body("<html><script>\n" +
+	                        "        window.onload = inicio;\n" +
+	                        "        function inicio(){ location.href ='/' }</script></html>");
 	    }
-	    return new ModelAndView("redirect:/");
-	  }
 
 	  @PostMapping("/register")
 	  public ModelAndView registerUser(@Valid  SignupRequest signUpRequest) {
 	    if (userRepository.existsByUsername(signUpRequest.getUsername())) {
-	    	return new ModelAndView();
 	     // return ResponseEntity.badRequest().body(new MessageResponse("Error: Username is already taken!"));
 	    }
 
@@ -130,10 +130,10 @@ public class AuthController {
 	    user.setRoles(roles);
 	    userRepository.save(user);
 
-	    return new ModelAndView("redirect:/register").addObject("success", "The user has been created successfully!");
+	    return new ModelAndView("redirect:/register").addObject("message", "The user has been created successfully!");
 	  }
 
-	  @PostMapping("/signout")
+	  @GetMapping("/signout")
 	  public ResponseEntity<?> logoutUser() {
 	    ResponseCookie cookie = jwtUtils.getCleanJwtCookie();
 	    return ResponseEntity.ok().header(HttpHeaders.SET_COOKIE, cookie.toString())

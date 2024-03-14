@@ -8,6 +8,7 @@ import com.example.Proyecto.Model.Direccion;
 import com.example.Proyecto.Model.Rol;
 
 import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Null;
 import jakarta.validation.constraints.Pattern;

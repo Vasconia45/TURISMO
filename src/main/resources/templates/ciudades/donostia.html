@@ -39,105 +39,34 @@
 	</header>
 
 	<div class="container-img">
-		<div class="box-img">
+
+		<div class="box-img" th:each="est : ${establecimientos}">
 			<div class="image">
-				<img th:src="@{/img/vitoria.jpg}" alt="img-galeria">
-			</div>			
-		</div>
-		<div class="box-img">
-					<div class="image">
-				<img th:src="@{/img/vitoria.jpg}" alt="img-galeria">
+				<img th:src="@{'/img/est/donostia/' + ${est.nombre} + '.jpg'}"
+					alt="img-galeria">
 			</div>
 		</div>
-		<div class="box-img">
-					<div class="image">
-				<img th:src="@{/img/vitoria.jpg}" alt="img-galeria">
-			</div>
-		</div>
-		<div class="box-img">
-					<div class="image">
-				<img th:src="@{/img/vitoria.jpg}" alt="img-galeria">
-			</div>
-		</div>
-		<div class="box-img">
-					<div class="image">
-				<img th:src="@{/img/vitoria.jpg}" alt="img-galeria">
-			</div>
-		</div>
-		<div class="box-img">
-					<div class="image">
-				<img th:src="@{/img/vitoria.jpg}" alt="img-galeria">
-			</div>
-		</div>
-		<div class="box-img">
-					<div class="image">
-				<img th:src="@{/img/vitoria.jpg}" alt="img-galeria">
-			</div>
-		</div>
-		<div class="box-img">
-					<div class="image">
-				<img th:src="@{/img/vitoria.jpg}" alt="img-galeria">
-			</div>
-		</div>
-		<div class="box-img">
-					<div class="image">
-				<img th:src="@{/img/vitoria.jpg}" alt="img-galeria">
-			</div>
-		</div>
-		<div class="box-img">
-					<div class="image">
-				<img th:src="@{/img/vitoria.jpg}" alt="img-galeria">
-			</div>
-		</div>
-		<div class="box-img">
-					<div class="image">
-				<img th:src="@{/img/vitoria.jpg}" alt="img-galeria">
-			</div>
-		</div>
-		<div class="box-img">
-					<div class="image">
-				<img th:src="@{/img/vitoria.jpg}" alt="img-galeria">
-			</div>
-		</div>
-		<div class="box-img">
-					<div class="image">
-				<img th:src="@{/img/vitoria.jpg}" alt="img-galeria">
-			</div>
-		</div>
-		<div class="box-img">
-					<div class="image">
-				<img th:src="@{/img/vitoria.jpg}" alt="img-galeria">
-			</div>
-		</div>
-		<div class="box-img">
-					<div class="image">
-				<img th:src="@{/img/vitoria.jpg}" alt="img-galeria">
-			</div>
-		</div>
-		<div class="box-img">
-					<div class="image">
-				<img th:src="@{/img/vitoria.jpg}" alt="img-galeria">
-			</div>
-		</div>
-		<div class="box-img">
-					<div class="image">
-				<img th:src="@{/img/vitoria.jpg}" alt="img-galeria">
-			</div>
-		</div>
-		<div class="box-img">
-					<div class="image">
-				<img th:src="@{/img/vitoria.jpg}" alt="img-galeria">
-			</div>
-		</div>
-		<div class="box-img">
-					<div class="image">
-				<img th:src="@{/img/vitoria.jpg}" alt="img-galeria">
-			</div>
-		</div>
-		
+
 		<div class="popup-image">
-			<span>&times;</span>
-			<img th:src="@{/img/vitoria.jpg}" alt="img-galeria">
+			<span>&times;</span> <img th:src="@{/img/vitoria.jpg}"
+				alt="img-galeria">
+			<div class="form">
+				<form th:action="@{'/pintxos'}"
+					th:name="pintxos" method="GET">
+					<button class="btn btn-xl text-uppercase" id="submitButton"
+						type="submit">Pintxos</button>
+				</form>
+			</div>
+			<!-- <div class="form">
+				<form th:action="@{'/opinion'}" th:object="${opinion}"
+					th:name="comentario" method="POST">
+					<p>Deja tu comentario:</p>
+					<textarea rows="5" class="form-control" id="message"
+						placeholder="Mensaje *" data-sb-validations="required"></textarea>
+					<button class="btn btn-xl text-uppercase" id="submitButton"
+						type="submit">Enviar</button>
+				</form>
+			</div>-->
 		</div>
 	</div>
 	<script> 

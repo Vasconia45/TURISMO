@@ -20,9 +20,7 @@ public class Pintxo {
 	
 	private String nombre;
 	
-	private List<String> ingredientes;
-	
-	private String extra;
+	private String ingredientes;
 	
 	@OneToMany(mappedBy = "pintxo", cascade = CascadeType.REMOVE)
 	private Set<EstablecimientoPintxo> establecimientosPintxos = new HashSet<>();
@@ -36,12 +34,16 @@ public class Pintxo {
 	public Pintxo() {
 		super();
 	}
+	
+	public Pintxo(String nombre) {
+		super();
+		this.nombre = nombre;
+	}
 
-	public Pintxo(String nombre, List<String> ingredientes, String extra) {
+	public Pintxo(String nombre, String ingredientes) {
 		super();
 		this.nombre = nombre;
 		this.ingredientes = ingredientes;
-		this.extra = extra;
 	}
 
 	public Long getId() {
@@ -52,15 +54,11 @@ public class Pintxo {
 		this.id = id;
 	}
 
-	public String getNombre() {
-		return nombre;
-	}
-
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
 
-	public String getTipo() {
+	public String getNombre() {
 		return nombre;
 	}
 
@@ -68,20 +66,12 @@ public class Pintxo {
 		this.nombre = nombre;
 	}
 
-	public List<String> getIngredientes() {
+	public String getIngredientes() {
 		return ingredientes;
 	}
 
-	public void setIngredientes(List<String> ingredientes) {
+	public void setIngredientes(String ingredientes) {
 		this.ingredientes = ingredientes;
-	}
-
-	public String getExtra() {
-		return extra;
-	}
-
-	public void setExtra(String extra) {
-		this.extra = extra;
 	}
 	
 	public Set<EstablecimientoPintxo> getEstablecimientosPintxos() {

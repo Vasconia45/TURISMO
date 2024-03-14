@@ -16,6 +16,7 @@ import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
+import jakarta.validation.constraints.NotBlank;
 
 @Entity(name = "users")
 public class User {
@@ -27,8 +28,8 @@ public class User {
 	private String nombre;
 	
 	private String username;
-	
-	private int phone;
+
+	private Integer phone;
 	
 	private String  email;
 	
@@ -64,7 +65,7 @@ public class User {
 
 
 
-	public User(String nombre, String username, int phone, String email, String password) {
+	public User(String nombre, String username, Integer phone, String email, String password) {
 		super();
 		this.nombre = nombre;
 		this.username = username;
@@ -73,7 +74,7 @@ public class User {
 		this.password = password;
 	}
 
-	public User(String nombre, String username, int phone, String email, String password, LocalDateTime createdOn,
+	public User(String nombre, String username, Integer phone, String email, String password, LocalDateTime createdOn,
 			Direccion direccion) {
 		super();
 		this.nombre = nombre;
@@ -85,7 +86,7 @@ public class User {
 		this.direccion = direccion;
 	}
 	
-	public User(String nombre, String username, int phone, String email, String password, LocalDateTime createdOn) {
+	public User(String nombre, String username, Integer phone, String email, String password, LocalDateTime createdOn) {
 		super();
 		this.nombre = nombre;
 		this.username = username;
@@ -94,6 +95,7 @@ public class User {
 		this.password = password;
 		this.createdOn = createdOn;
 	}
+
 
 	public Long getId() {
 		return id;
@@ -119,11 +121,11 @@ public class User {
 		this.username = username;
 	}
 
-	public int getPhone() {
+	public Integer getPhone() {
 		return phone;
 	}
 
-	public void setPhone(int phone) {
+	public void setPhone(Integer phone) {
 		this.phone = phone;
 	}
 

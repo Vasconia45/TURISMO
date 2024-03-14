@@ -2,6 +2,8 @@ package com.example.Proyecto;
 
 import java.time.LocalDateTime;
 import java.time.Year;
+import java.util.HashSet;
+import java.util.Set;
 
 import org.hibernate.boot.model.source.spi.AttributeRole;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -61,9 +63,9 @@ public class Proyecto1Application {
 			BebidaService bebidaservice, EstablecimientoBebidaRepository estBebrepository, FavoritoService favoritoservice,
 			OpinionService opinionservice) {
 		return env -> {
-			ciudadservice.deleteAll();
 			userService.deleteAll();
 			roleService.deleteAll();
+			ciudadservice.deleteAll();
 			
 			Ciudad donostia = new Ciudad("Donostia", "Guipuzcoa", 150000, "Tiene X habitantes");
 			Ciudad vitoria = new Ciudad("Vitoria", "Alava", 80000, "Tiene X");
@@ -87,9 +89,15 @@ public class Proyecto1Application {
 			roleService.save(rol2);
 			roleService.save(rol3);
 			
+			Set<Rol> ro = new HashSet<>();
+			ro.add(rol1);
+			ro.add(rol2);
+			ro.add(rol3);
+			
 			User admin = new User();
 			admin.setUsername("ADMIN");
 			admin.setPassword(encoder.encode("Donosti34"));
+			admin.setRoles(ro);
 			
 			
 			userRepository.save(admin);

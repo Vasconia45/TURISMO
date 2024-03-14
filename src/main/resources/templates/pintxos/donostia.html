@@ -20,6 +20,8 @@
 <link rel="stylesheet" th:href="@{css/ciudades/donostia.css}" />
 
 <link rel="stylesheet" th:href="@{css/toggle.css}" />
+
+<link rel="stylesheet" th:href="@{css/pintxos.css}" />
 </head>
 <body>
 	<header>
@@ -32,18 +34,18 @@
 				</a>
 				<!-- ANCLAS -->
 				<div class="col-7">
-					<h4>BILBAO</h4>
+					<h4>DONOSTIA PINTXOS</h4>
 				</div>
 			</nav>
 		</div>
 	</header>
 
-	<div class="container-img" th:each="est : ${establecimientos}">
-	
-		<div class="box-img">
+	<div class="container-img">
+
+		<div class="box-img" th:each="pintxo : ${pintxos}">
 			<div class="image">
-				<img th:src="@{/img/est/default.jpg}" th:if="@{'/img/est/bilbao/' + ${est.nombre} + '.jpg'} " alt="img-galeria">
-				<img th:src="@{'/img/est/bilbao/' + ${est.nombre} + '.jpg'}"  alt="img-galeria">
+				<img th:src="@{'/img/pintxos/p_' + ${pintxo.nombre} + '.jpg'}"
+					alt="img-galeria">
 			</div>
 		</div>
 
@@ -51,12 +53,14 @@
 			<span>&times;</span> <img th:src="@{/img/vitoria.jpg}"
 				alt="img-galeria">
 			<div class="form">
-				<form th:action="@{'/opinion'}" th:object="${opinion}" th:name="comentario" method="POST">
+				<form th:action="@{/pintxos/guardar/{id}(id = ${pintxos.id})}" th:object="${opinion}"
+					th:name="comentario" method="POST">
 					<p>Deja tu comentario:</p>
-					<textarea rows="5" class="form-control" id="message"
+					<input type="number"  th:field="*{valoracion}"  th:name="valoracion" th:id="valoracion">
+					<textarea  th:field="*{comentario}" th:name="comentario" rows="5" class="form-control" id="message"
 						placeholder="Mensaje *" data-sb-validations="required"></textarea>
-						<button class="btn btn-xl text-uppercase" id="submitButton"
-            type="submit">Enviar</button>
+					<button class="btn btn-xl text-uppercase" id="submitButton"
+						type="submit">Enviar</button>
 				</form>
 			</div>
 		</div>
