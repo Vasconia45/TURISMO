@@ -2,6 +2,7 @@ package com.example.Proyecto.Service;
 
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -30,6 +31,11 @@ public class PintxoServiceImp implements PintxoService{
 	public List<Pintxo> getAll() {
 		List<Pintxo> pintxos = repository.findAll();
 		return pintxos;
+	}
+
+	@Override
+	public Pintxo findById(Long id) {
+		return repository.getReferenceById(id);
 	}
 
 }

@@ -217,7 +217,7 @@ public class MainController {
 	
 	@RequestMapping(value="/pintxos/guardar/{id}", method = RequestMethod.POST)
 	public String guardarPintxos(@PathVariable("id") Long id, @ModelAttribute("opinion") Opinion op) {
-		System.out.println(id + "----" + op.getComentario() + "---" + op.getValoracion());
+		op.setId(id, userService.findByUsername("ADMIN"));
 		opinionService.save(op);
 		return "redirect:/pintxos";
 	}

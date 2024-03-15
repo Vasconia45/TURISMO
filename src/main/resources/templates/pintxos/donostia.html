@@ -43,18 +43,21 @@
 	<div class="container-img">
 
 		<div class="box-img" th:each="pintxo : ${pintxos}">
-			<div class="image">
-				<img th:src="@{'/img/pintxos/p_' + ${pintxo.nombre} + '.jpg'}"
-					alt="img-galeria">
-			</div>
-		</div>
+    <div class="image">
+        <img th:src="@{'/img/pintxos/p_' + ${pintxo.nombre} + '.jpg'}"
+             alt="img-galeria" th:alt="${pintxo.id}">
+    </div>
+</div>
 
-		<div class="popup-image">
+		<div class="popup-image" th:each="pintxo : ${pintxos}">
 			<span>&times;</span> <img th:src="@{/img/vitoria.jpg}"
 				alt="img-galeria">
+				<input type="hidden" th:name="'pintxo_id_' + ${pintxo.id}" th:value="${pintxo.id}">
 			<div class="form">
-				<form th:action="@{/pintxos/guardar/{id}(id = ${pintxos.id})}" th:object="${opinion}"
+				<form th:action="@{/pintxos/guardar/{id}(id = ${pintxo.id})}" th:object="${opinion}"
 					th:name="comentario" method="POST">
+					
+			<p th:text="${pintxo.id}"></p>
 					<p>Deja tu comentario:</p>
 					<input type="number"  th:field="*{valoracion}"  th:name="valoracion" th:id="valoracion">
 					<textarea  th:field="*{comentario}" th:name="comentario" rows="5" class="form-control" id="message"
@@ -64,6 +67,9 @@
 				</form>
 			</div>
 		</div>
+		
+		
+		
 	</div>
 	<script> 
 		var nav = document.querySelector('nav');

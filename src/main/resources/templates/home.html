@@ -1,7 +1,6 @@
 <!DOCTYPE html>
-<html  xmlns="http://www.w3.org/1999/xhtml"
-       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-       lang="es">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" lang="es">
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -44,9 +43,9 @@
 				</a>
 				<!-- ANCLAS -->
 				<div class="col-10 text-end">
-					<a href="#section1">Servicio</a> <a href="#ciudad">Ciudad</a> <a
-						href="#section2">Pintxos</a> <a href="#contact">Contacto</a> <a
-						th:href="@{'/register'}"><i class="fa-solid fa-user"></i></a>
+					<a th:href="@{/admin}">Servicio</a> <a href="#ciudad">Ciudad</a> <a href="#section2">Pintxos</a> <a
+						href="#contact">Contacto</a> <a th:href="@{'/register'}"><i
+						class="fa-solid fa-user"></i></a>
 				</div>
 				<div class="toggle col-auto" id="toggle">
 					<a href="#" id="sun"><i class="fa-solid fa-sun fa-lg"></i></a> <a
@@ -59,19 +58,41 @@
 	<section id="ciudad">
 		<div class="ciudades">
 			<div id="bilbao">
-				<h2>
-					<a th:href="@{'/bilbao'}">BILBAO</a>
-				</h2>
+				<div id="tiempo">
+					<h1 id="temperatura-valor2"></h1>
+					<img id="icono-animado" src="/img/amcharts/animated/cloudy.svg"
+						alt="" height="100" width="100">
+				</div>
+				<div>
+					<h2>
+						<a th:href="@{'/bilbao'}">BILBAO</a>
+					</h2>
+				</div>
 			</div>
 			<div id="donostia">
-				<h2>
-					<a th:href="@{'/donostia'}">DONOSTIA - SAN SEBASTIAN</a>
-				</h2>
+				<div id="tiempo">
+					<h1 id="temperatura-valor"></h1>
+					<img id="icono-animado" src="/img/amcharts/animated/cloudy.svg"
+						alt="" height="100" width="100">
+				</div>
+				<div>
+					<h2>
+						<a th:href="@{'/donostia'}">DONOSTIA - SAN SEBASTIAN</a>
+					</h2>
+				</div>
 			</div>
 			<div id="vitoria">
-				<h2>
-					<a th:href="@{'/vitoria'}">VITORIA - GASTEIZ</a>
-				</h2>
+				<div id="tiempo">
+					<h1 id="temperatura-valor3"></h1>
+					<img id="icono-animado" src="/img/amcharts/animated/cloudy.svg"
+						alt="" height="100" width="100">
+				</div>
+
+				<div>
+					<h2>
+						<a th:href="@{'/vitoria'}">VITORIA - GASTEIZ</a>
+					</h2>
+				</div>
 			</div>
 		</div>
 	</section>
@@ -180,6 +201,8 @@
 	<script th:src="@{js/toggle.js}"></script>
 	<!-- CARROUSEL-->
 	<script th:src="@{js/carrousel.js}"></script>
+	<!-- API -->
+	<script th:src="@{js/api.js}"></script>
 </body>
 
 </html>

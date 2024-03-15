@@ -25,22 +25,30 @@
   background: url(../img/bilbao.jpg);
   background-size: cover;
   background-position: center;
+   display: flex;
+  justify-content: center;
+  align-items: center;
 }
 #ciudad .ciudades #donostia {
   background: url(../img/donostia.jpg);
   background-size: cover;
   background-position: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 #ciudad .ciudades #vitoria {
   background: url(../img/vitoria.jpg);
   background-size: cover;
   background-position: center;
-}
-#ciudad .ciudades h2{
-  height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
+}
+#ciudad .ciudades h2{
+  height: 100%;
+  margin-top: 150px;
+ 
 }
 #ciudad .ciudades h2:hover{
  transform: scale(1.3);

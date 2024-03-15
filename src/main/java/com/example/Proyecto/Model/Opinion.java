@@ -34,6 +34,24 @@ public class Opinion {
 			this.pintxo_id = pintxo_id;
 			this.user_id = user_id;
 		}
+
+		public Long getPintxo_id() {
+			return pintxo_id;
+		}
+
+		public void setPintxo_id(Long pintxo_id) {
+			this.pintxo_id = pintxo_id;
+		}
+
+		public Long getUser_id() {
+			return user_id;
+		}
+
+		public void setUser_id(Long user_id) {
+			this.user_id = user_id;
+		}
+		
+		
 	}
 	
 
@@ -97,4 +115,31 @@ public class Opinion {
 	public void setValoracion(int valoracion) {
 		this.valoracion = valoracion;
 	}
+
+	public Pintxo getPintxoOp() {
+		return pintxoOp;
+	}
+
+	public void setPintxoOp(Pintxo pintxoOp) {
+		this.pintxoOp = pintxoOp;
+	}
+
+	public User getUserOp() {
+		return userOp;
+	}
+
+	public void setUserOp(User userOp) {
+		this.userOp = userOp;
+	}
+
+	public Id getId() {
+		return id;
+	}
+
+	public void setId(Long pintxo_id, Long user_id) {
+		this.id.setPintxo_id(pintxo_id);
+		this.id.setUser_id(user_id);
+	}
+	
+	
 }
