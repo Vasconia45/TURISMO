@@ -56,8 +56,6 @@
 			<div class="form">
 				<form th:action="@{/pintxos/guardar/{id}(id = ${pintxo.id})}" th:object="${opinion}"
 					th:name="comentario" method="POST">
-					
-			<p th:text="${pintxo.id}"></p>
 					<p>Deja tu comentario:</p>
 					<input type="number"  th:field="*{valoracion}"  th:name="valoracion" th:id="valoracion">
 					<textarea  th:field="*{comentario}" th:name="comentario" rows="5" class="form-control" id="message"
